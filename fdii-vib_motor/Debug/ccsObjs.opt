@@ -1,0 +1,1 @@
+"./main.obj" "./syscfg/ti_devices_config.obj" "./syscfg/ti_drivers_config.obj" "../cc26x2r1f.cmd" -llibc.a 
