@@ -8,16 +8,15 @@
 /**
  * Import the modules used in this configuration.
  */
-const PWM  = scripting.addModule("/ti/drivers/PWM");
+const PWM  = scripting.addModule("/ti/drivers/PWM", {}, false);
 const PWM1 = PWM.addInstance();
 const RTOS = scripting.addModule("/ti/drivers/RTOS");
 
 /**
  * Write custom configuration values to the imported modules.
  */
-PWM1.$name                            = "vibration";
+PWM1.$name                            = "CONFIG_PWM_0";
 PWM1.timerObject.$name                = "CONFIG_GPTIMER_0";
-PWM1.timerObject.timer.$assign        = "GPTM0";
 PWM1.timerObject.timer.pwmPin.$assign = "boosterpack.19";
 PWM1.timerObject.pwmPinInstance.$name = "CONFIG_PIN_0";
 
@@ -25,3 +24,10 @@ const CCFG              = scripting.addModule("/ti/devices/CCFG", {}, false);
 CCFG.ccfgTemplate.$name = "ti_devices_CCFGTemplate0";
 
 RTOS.name = "NoRTOS";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+PWM1.timerObject.timer.$suggestSolution = "GPTM1";

@@ -55,8 +55,8 @@ extern const PIN_Config BoardGpioInitTable[];
  */
 
 /* DIO12 */
-extern const uint_least8_t              vibration_CONST;
-#define vibration                       0
+extern const uint_least8_t              CONFIG_PWM_0_CONST;
+#define CONFIG_PWM_0                    0
 #define CONFIG_TI_DRIVERS_PWM_COUNT     1
 
 

@@ -17,9 +17,9 @@ digraph Model
     ti_drivers_PIN -> ti_drivers_Board
 
     // mod.$name=/ti/drivers/PWM
-    vibration -> ti_drivers_Power
-    vibration -> ti_drivers_Board
-    vibration -> CONFIG_GPTIMER_0
+    CONFIG_PWM_0 -> ti_drivers_Power
+    CONFIG_PWM_0 -> ti_drivers_Board
+    CONFIG_PWM_0 -> CONFIG_GPTIMER_0
 
     // mod.$name=/ti/drivers/Power
     ti_drivers_Power -> ti_devices_CCFG

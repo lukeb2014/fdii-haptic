@@ -60,7 +60,7 @@ PWMTimerCC26XX_Object pwmTimerCC26XXObjects[CONFIG_PWM_COUNT];
  *  ======== pwmCC26XXHWAttrs ========
  */
 const PWMTimerCC26XX_HwAttrs pwmTimerCC26XXHWAttrs[CONFIG_PWM_COUNT] = {
-    /* vibration */
+    /* CONFIG_PWM_0 */
     {
         .pwmPin = IOID_12,
         .gpTimerUnit = CONFIG_GPTIMER_0
@@ -71,15 +71,15 @@ const PWMTimerCC26XX_HwAttrs pwmTimerCC26XXHWAttrs[CONFIG_PWM_COUNT] = {
  *  ======== PWM_config ========
  */
 const PWM_Config PWM_config[CONFIG_PWM_COUNT] = {
-    /* vibration */
+    /* CONFIG_PWM_0 */
     {
         .fxnTablePtr = &PWMTimerCC26XX_fxnTable,
-        .object = &pwmTimerCC26XXObjects[vibration],
-        .hwAttrs = &pwmTimerCC26XXHWAttrs[vibration]
+        .object = &pwmTimerCC26XXObjects[CONFIG_PWM_0],
+        .hwAttrs = &pwmTimerCC26XXHWAttrs[CONFIG_PWM_0]
     },
 };
 
-const uint_least8_t vibration_CONST = vibration;
+const uint_least8_t CONFIG_PWM_0_CONST = CONFIG_PWM_0;
 const uint_least8_t PWM_count = CONFIG_PWM_COUNT;
 
 /*
@@ -122,13 +122,13 @@ GPTimerCC26XX_Object gptimerCC26XXObjects[CONFIG_GPTIMER_COUNT];
  *  ======== gptimerCC26XXHWAttrs ========
  */
 const GPTimerCC26XX_HWAttrs gptimerCC26XXHWAttrs[CONFIG_GPTIMER_COUNT] = {
-    /* CONFIG_GPTIMER_0, used by vibration */
+    /* CONFIG_GPTIMER_0, used by CONFIG_PWM_0 */
     {
-        .baseAddr = GPT0_BASE,
-        .intNum      = INT_GPT0A,
+        .baseAddr = GPT1_BASE,
+        .intNum      = INT_GPT1A,
         .intPriority = (~0),
-        .powerMngrId = PowerCC26XX_PERIPH_GPT0,
-        .pinMux      = GPT_PIN_0A
+        .powerMngrId = PowerCC26XX_PERIPH_GPT1,
+        .pinMux      = GPT_PIN_1A
     },
 };
 
