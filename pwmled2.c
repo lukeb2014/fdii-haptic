@@ -49,6 +49,9 @@ PWM_Handle pwm1 = NULL;
 
 /* function prototypes */
 void updateDutyCycle(uint32_t percent);
+void initializePWM(uint32_t frequency, PWM_Handle *pwm);
+void informUserOfStartup();
+void cleanup(PWM_Handle *pwm1);
 
 /*
  *  ======== mainThread ========
@@ -56,6 +59,15 @@ void updateDutyCycle(uint32_t percent);
  */
 void *mainThread(void *arg0)
 {
+    initializePWM(1e3, &pwm1);
+    informUserOfStartup();
+
+    // everything else called by Riley + Melissa
+    cleanup(&pwm1);
+    return;
+}
+
+void initializePWM(uint32_t frequency, PWM_Handle *pwm) {
     PWM_Params pwmParams;
 
     /* Call driver initialization functions. */
@@ -64,23 +76,32 @@ void *mainThread(void *arg0)
     PWM_Params_init(&pwmParams);
     pwmParams.idleLevel = PWM_IDLE_LOW;      // Output low when PWM is not running
     pwmParams.periodUnits = PWM_PERIOD_HZ;   // Period is in Hz
-    pwmParams.periodValue = 1e3;             // 1e3 Hz, empirically a minimum of 3 Hz is possible
+    pwmParams.periodValue = frequency;             // 1e3 Hz, empirically a minimum of 3 Hz is possible
     pwmParams.dutyUnits = PWM_DUTY_FRACTION; // Duty is in fractional percentage
     pwmParams.dutyValue = 0;                 // 0% initial duty cycle
-    pwm1 = PWM_open(CONFIG_PWM_1, &pwmParams);
-    if (pwm1 == NULL) {
-        /* CONFIG_PWM_0 did not open */
+    *pwm = PWM_open(CONFIG_PWM_1, &pwmParams);
+    if (*pwm == NULL) {
+        /* CONFIG_PWM_configNum did not open */
         /* TODO log this */
         while (1);
     }
 
-    PWM_start(pwm1);
+    PWM_start(*pwm);
+}
 
+void informUserOfStartup() {
+    // perform a buzz to inform the user of startup
     int i = 0;
-    for (i = 15; i > 0; i--) {
-        PWM_setDutyAndPeriod(pwm1, (uint32_t) (((uint64_t) PWM_DUTY_FRACTION_MAX * 67) / 100), i);
-        usleep(2e6); // sleep one second
+    for (i = 0; i < 3; i++) {
+        updateDutyCycle(50); // reasonable strength
+        usleep(5e5); // let it buzz for 0.5 s
+        updateDutyCycle(0); // off
+        usleep(5e5); // let it buzz for 0.5 s
     }
+}
+
+void cleanup(PWM_Handle *pwm1) {
+    PWM_stop(*pwm1);
 }
 
 /* changes the duty cycle of the PWM */
