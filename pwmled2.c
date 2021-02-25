@@ -48,7 +48,7 @@
 PWM_Handle pwm1 = NULL;
 
 /* function prototypes */
-void updateDutyCycle(uint32_t newPeriod);
+void updateDutyCycle(uint32_t percent);
 
 /*
  *  ======== mainThread ========
@@ -63,8 +63,8 @@ void *mainThread(void *arg0)
 
     PWM_Params_init(&pwmParams);
     pwmParams.idleLevel = PWM_IDLE_LOW;      // Output low when PWM is not running
-    pwmParams.periodUnits = PWM_PERIOD_US;   // Period is in Hz
-    pwmParams.periodValue = 2000;            // 2000 US
+    pwmParams.periodUnits = PWM_PERIOD_HZ;   // Period is in Hz
+    pwmParams.periodValue = 1e3;             // 1e3 Hz, empirically a minimum of 3 Hz is possible
     pwmParams.dutyUnits = PWM_DUTY_FRACTION; // Duty is in fractional percentage
     pwmParams.dutyValue = 0;                 // 0% initial duty cycle
     pwm1 = PWM_open(CONFIG_PWM_1, &pwmParams);
@@ -76,12 +76,14 @@ void *mainThread(void *arg0)
 
     PWM_start(pwm1);
 
-    // use the UDF
-
-    updateDutyCycle((uint32_t) (((uint64_t) PWM_DUTY_FRACTION_MAX * 37) / 100));
+    int i = 0;
+    for (i = 15; i > 0; i--) {
+        PWM_setDutyAndPeriod(pwm1, (uint32_t) (((uint64_t) PWM_DUTY_FRACTION_MAX * 67) / 100), i);
+        usleep(2e6); // sleep one second
+    }
 }
 
 /* changes the duty cycle of the PWM */
-void updateDutyCycle(uint32_t newPeriod) {
-    PWM_setDuty(pwm1, newPeriod);
+void updateDutyCycle(uint32_t percent) {
+    PWM_setDuty(pwm1, (uint32_t) (((uint64_t) PWM_DUTY_FRACTION_MAX * percent) / 100)); //
 }
