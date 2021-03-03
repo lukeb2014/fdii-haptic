@@ -8,14 +8,14 @@ SHELL = cmd.exe
 %.obj: ../%.c $(GEN_OPTS) | $(GEN_FILES) $(GEN_MISC_FILES)
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: Arm Compiler'
-	"D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/doc/EE421/code_haptic_band/fdii-haptic" --include_path="D:/doc/EE421/code_haptic_band/fdii-haptic/Debug" --include_path="D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source" --include_path="D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos" --include_path="D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos/posix" --include_path="D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include" --define=DeviceFamily_CC26X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --preproc_with_compile --preproc_dependency="$(basename $(<F)).d_raw" --include_path="D:/doc/EE421/code_haptic_band/fdii-haptic/Debug/syscfg" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs/Debug" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos/posix" --include_path="C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include" --define=DeviceFamily_CC26X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --preproc_with_compile --preproc_dependency="$(basename $(<F)).d_raw" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs/Debug/syscfg" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
 
 build-708348673: ../pwmled2.syscfg
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: SysConfig'
-	"D:/ti/ccs1020/ccs/utils/sysconfig_1.7.0/sysconfig_cli.bat" -s "D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/.metadata/product.json" -o "syscfg" --compiler ccs "$<"
+	"C:/ti/ccs1020/ccs/utils/sysconfig_1.7.0/sysconfig_cli.bat" -s "C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/.metadata/product.json" -o "syscfg" --compiler ccs "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
 
@@ -31,7 +31,7 @@ syscfg/: build-708348673
 syscfg/%.obj: ./syscfg/%.c $(GEN_OPTS) | $(GEN_FILES) $(GEN_MISC_FILES)
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: Arm Compiler'
-	"D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/doc/EE421/code_haptic_band/fdii-haptic" --include_path="D:/doc/EE421/code_haptic_band/fdii-haptic/Debug" --include_path="D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source" --include_path="D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos" --include_path="D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos/posix" --include_path="D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include" --define=DeviceFamily_CC26X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --preproc_with_compile --preproc_dependency="syscfg/$(basename $(<F)).d_raw" --include_path="D:/doc/EE421/code_haptic_band/fdii-haptic/Debug/syscfg" --obj_directory="syscfg" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs/Debug" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos/posix" --include_path="C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include" --define=DeviceFamily_CC26X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --preproc_with_compile --preproc_dependency="syscfg/$(basename $(<F)).d_raw" --include_path="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs/Debug/syscfg" --obj_directory="syscfg" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
 

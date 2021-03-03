@@ -52,8 +52,8 @@ void updateDutyCycle(uint32_t percent);
 void initializePWM(uint32_t frequency, PWM_Handle *pwm);
 void informUserOfStartup();
 void cleanup(PWM_Handle *pwm1);
-void vibTime(uint8 timeMs)
-void vibFreq(uint8 freqHz, uint8 dutyCycle)
+void vibTime(uint8_t timeMs);
+void vibFreq(uint8_t freqHz, uint8_t dutyCycle);
 
 /*
  *  ======== mainThread ========
@@ -96,9 +96,9 @@ void informUserOfStartup() {
     int i = 0;
     for (i = 0; i < 3; i++) {
         updateDutyCycle(50); // reasonable strength
-        usleep(5e5); // let it buzz for 0.5 s
+        usleep(1e6); // let it buzz for 0.5 s
         updateDutyCycle(0); // off
-        usleep(5e5); // let it buzz for 0.5 s
+        usleep(2e6); // let it buzz for 0.5 s
     }
 }
 
@@ -112,13 +112,13 @@ void updateDutyCycle(uint32_t percent) {
 }
 
 /* vibrates for a length of time in ms*/
-void vibTime(uint8 timeMs) {
+void vibTime(uint8_t timeMs) {
     updateDutyCycle(100);   // always on
     usleep(timeMs*1000);    // let it buzz for timeMS
     updateDutyCycle(0);     // off
 }
 
 /* vibrates at given freq in Hz and duty cycle in % */
-void vibFreq(uint8 freqHz, uint8 dutyCycle) {
-    PWM_setDutyAndPeriod(*pwm1, (uint32_t) (((uint64_t) PWM_DUTY_FRACTION_MAX * dutyCycle) / 100), period);
+void vibFreq(uint8_t freqHz, uint8_t dutyCycle) {
+    PWM_setDutyAndPeriod(pwm1, (uint32_t) (((uint64_t) PWM_DUTY_FRACTION_MAX * dutyCycle) / 100), (uint32_t)freqHz);
 }

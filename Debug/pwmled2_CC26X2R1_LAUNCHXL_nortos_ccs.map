@@ -1,17 +1,17 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.2                     
 ******************************************************************************
->> Linked Wed Feb 24 20:59:10 2021
+>> Linked Wed Mar  3 14:19:20 2021
 
 OUTPUT FILE NAME:   <pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.out>
-ENTRY POINT SYMBOL: "resetISR"  address: 000030d1
+ENTRY POINT SYMBOL: "resetISR"  address: 000030d5
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00058000  000034e2  00054b1e  R  X
+  FLASH                 00000000   00058000  000034e6  00054b1a  R  X
   GPRAM                 11000000   00002000  00000000  00002000  RW X
   SRAM                  20000000   00014000  00004a5a  0000f5a6  RW X
   LOG_DATA              90000000   00040000  00000000  00040000  R   
@@ -21,12 +21,12 @@ SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    0000341a   0000341a    r-x
+00000000    00000000    0000341e   0000341e    r-x
   00000000    00000000    000000d8   000000d8    r-- .intvecs
-  000000d8    000000d8    0000320c   0000320c    r-x .text
-  000032e4    000032e4    00000136   00000136    r-- .const
-0000341c    0000341c    00000008   00000008    rw-
-  0000341c    0000341c    00000008   00000008    rw- .args
+  000000d8    000000d8    00003210   00003210    r-x .text
+  000032e8    000032e8    00000136   00000136    r-- .const
+00003420    00003420    00000008   00000008    rw-
+  00003420    00003420    00000008   00000008    rw- .args
 00003428    00003428    00000068   00000068    r--
   00003428    00003428    00000068   00000068    r-- .cinit
 00057fa8    00057fa8    00000058   00000058    r--
@@ -49,7 +49,7 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    000000d8     
                   00000000    000000d8     nortos_cc26x2.a : startup_cc13x2_cc26x2_ccs.oem4f (.intvecs)
 
-.text      0    000000d8    0000320c     
+.text      0    000000d8    00003210     
                   000000d8    000001e0     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PIN_init)
                   000002b8    00000198                      : PowerCC26X2.oem4f (.text:Power_sleep)
                   00000450    00000190                      : PowerCC26X2_calibrateRCOSC.oem4f (.text:calibrateRcoscHf1)
@@ -120,145 +120,145 @@ section   page    origin      length       input sections
                   000026ac    00000040     ti_drivers_config.obj (.text:Board_shutDownExtFlash)
                   000026ec    00000040     driverlib.lib : osc.obj (.text:NOROM_OSC_HPOSCRelativeFrequencyOffsetGet)
                   0000272c    00000040     drivers_cc26x2.a : PWM.oem4f (.text:PWM_open)
-                  0000276c    0000003c                      : PINCC26XX.oem4f (.text:PIN_setOutputValue)
-                  000027a8    0000003c     pwmled2.obj (.text:informUserOfStartup)
-                  000027e4    00000038     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PIN_setConfig)
-                  0000281c    00000038     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_getCurrentTick)
-                  00002854    00000038                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_initDevice)
-                  0000288c    00000038     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:notify)
-                  000028c4    00000036     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_setNextTick)
-                  000028fa    00000002                     : SemaphoreP_nortos.oem4f (.text:SemaphoreP_destruct)
-                  000028fc    00000034                     : ClockPTimer_nortos.oem4f (.text:ClockP_getTicksUntilInterrupt)
-                  00002930    00000034     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.text:GPTimerCC26XXSetLoadMatch)
-                  00002964    00000034                      : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_configureDebugStall)
-                  00002998    00000034     driverlib.lib : aux_sysif.obj (.text:NOROM_AUXSYSIFOpModeChange)
-                  000029cc    00000034                   : interrupt.obj (.text:NOROM_IntRegister)
-                  00002a00    00000034                   : sys_ctrl.obj (.text:NOROM_SysCtrlIdle)
-                  00002a34    00000034     drivers_cc26x2.a : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_getperiodCounts)
-                  00002a68    00000030                      : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_close)
-                  00002a98    00000030                      : PINCC26XX.oem4f (.text:PINCC26XX_setMux)
-                  00002ac8    00000030                      : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_start)
-                  00002af8    00000030                      : PowerCC26X2.oem4f (.text:Power_releaseConstraint)
-                  00002b28    00000030                      : PowerCC26X2.oem4f (.text:Power_setConstraint)
-                  00002b58    00000030     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00:_c_int00)
-                  00002b88    0000002c     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_getTimerValue)
-                  00002bb4    0000002c                      : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_close)
-                  00002be0    0000002c                      : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_stop)
-                  00002c0c    0000002c     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_setThreshold)
-                  00002c38    0000002c     pwmled2.obj (.text:updateDutyCycle)
-                  00002c64    00000028     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:oscillatorISR)
-                  00002c8c    00000024     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:ClockP_getTicks)
-                  00002cb0    00000024                     : ClockPTimer_nortos.oem4f (.text:ClockP_scheduleNextTick)
-                  00002cd4    00000024                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_dispatch)
-                  00002cf8    00000024     driverlib.lib : osc.obj (.text:NOROM_OSCHF_TurnOnXosc)
-                  00002d1c    00000024     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_getMaxTicks)
-                  00002d40    00000024     drivers_cc26x2.a : PowerCC26X2_calibrateRCOSC.oem4f (.text:getTdcSemaphore)
-                  00002d64    00000024     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:sleepTicks)
-                  00002d88    00000020     ti_drivers_config.obj (.text:Board_init)
-                  00002da8    00000020     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:ClockP_add)
-                  00002dc8    00000020     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PINCC26XX_setIoCfgMux)
-                  00002de8    00000020     nortos_cc26x2.a : QueueP_nortos.oem4f (.text:QueueP_put)
-                  00002e08    00000020                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_dynamicStub)
-                  00002e28    00000020     pwmled2.obj (.text:mainThread)
-                  00002e48    0000001e     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PIN_close)
-                  00002e66    0000001e                      : PowerCC26X2.oem4f (.text:Power_getTransitionLatency)
-                  00002e84    0000001e     nortos_cc26x2.a : SemaphoreP_nortos.oem4f (.text:SemaphoreP_constructBinary)
-                  00002ea2    0000001e                     : SwiP_nortos.oem4f (.text:SwiP_or)
-                  00002ec0    0000001c     driverlib.lib : chipinfo.obj (.text:NOROM_ChipInfo_GetChipFamily)
-                  00002edc    0000001c     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PIN_hwi)
-                  00002ef8    0000001c     nortos_cc26x2.a : SwiP_nortos.oem4f (.text:SwiP_disable)
-                  00002f14    0000001c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  00002f30    0000001a     drivers_cc26x2.a : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_control)
-                  00002f4a    0000001a                      : PowerCC26X2.oem4f (.text:PowerCC26XX_calibrate)
-                  00002f64    0000001a     nortos_cc26x2.a : QueueP_nortos.oem4f (.text:QueueP_get)
-                  00002f7e    00000018                     : ClockPTimer_nortos.oem4f (.text:ClockP_destruct)
-                  00002f96    00000002                     : SemaphoreP_nortos.oem4f (.text:clkFxn)
-                  00002f98    00000018                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_inISR)
-                  00002fb0    00000018     driverlib.lib : chipinfo.obj (.text:NOROM_ChipInfo_GetPackageType)
-                  00002fc8    00000018     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:Power_idleFunc)
-                  00002fe0    00000018     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_startup)
-                  00002ff8    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.c.obj (.text:_args_main)
-                  00003010    00000018                                   : ll_mul_t2.asm.obj (.text)
-                  00003028    00000018     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:switchToTCXO)
-                  00003040    00000016     driverlib.lib : chipinfo.obj (.text:NOROM_ThisLibraryIsFor_CC13x2_CC26x2_HwRev20AndLater_HaltIfViolated)
-                  00003056    00000016     nortos_cc26x2.a : SwiP_nortos.oem4f (.text:maxbit)
-                  0000306c    00000014     drivers_cc26x2.a : PWM.oem4f (.text:PWM_Params_init)
-                  00003080    00000014                      : PowerCC26X2_calibrateRCOSC.oem4f (.text:PowerCC26X2_calibrate)
-                  00003094    00000014                      : PowerCC26X2.oem4f (.text:Power_disablePolicy)
-                  000030a8    00000014     nortos_cc26x2.a : SwiP_nortos.oem4f (.text:SwiP_handleHwi)
-                  000030bc    00000014                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_getCount64)
-                  000030d0    00000014                     : startup_cc13x2_cc26x2_ccs.oem4f (.text:resetISR)
-                  000030e4    00000012     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_Params_init)
-                  000030f6    00000012     nortos_cc26x2.a : HwiPCC26XX_nortos.oem4f (.text:HwiP_Params_init)
-                  00003108    00000012     main_nortos.obj (.text:main)
-                  0000311a    00000002     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:emptyClockFunc)
-                  0000311c    00000010     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:ClockP_Params_init)
-                  0000312c    00000010                     : ClockPTimer_nortos.oem4f (.text:ClockP_getCpuFreq)
-                  0000313c    00000010                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_disable)
-                  0000314c    00000010                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_post)
-                  0000315c    00000010     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PINCC26XX_getPinCount)
-                  0000316c    00000010     nortos_cc26x2.a : PowerCC26X2_nortos.oem4f (.text:PowerCC26XX_schedulerDisable)
-                  0000317c    00000010     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:Power_enablePolicy)
-                  0000318c    00000010     nortos_cc26x2.a : SemaphoreP_nortos.oem4f (.text:SemaphoreP_Params_init)
-                  0000319c    00000010                     : SwiP_nortos.oem4f (.text:SwiP_Params_init)
-                  000031ac    00000010                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_Params_init)
-                  000031bc    0000000e                     : QueueP_nortos.oem4f (.text:QueueP_empty)
-                  000031ca    0000000e                     : QueueP_nortos.oem4f (.text:QueueP_remove)
-                  000031d8    0000000e     pwmled2.obj (.text:cleanup)
-                  000031e6    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  000031f4    0000000c     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:ClockP_doTick)
-                  00003200    0000000c                     : ClockPTimer_nortos.oem4f (.text:ClockP_getSystemTickPeriod)
-                  0000320c    0000000c     driverlib.lib : cpu.obj (.text:NOROM_CPUcpsid)
-                  00003218    0000000c                   : cpu.obj (.text:NOROM_CPUcpsie)
-                  00003224    0000000c     nortos_cc26x2.a : PowerCC26X2_nortos.oem4f (.text:PowerCC26XX_schedulerRestore)
-                  00003230    0000000c     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:Power_getConstraintMask)
-                  0000323c    0000000c                      : PowerCC26X2.oem4f (.text:Power_getDependencyCount)
-                  00003248    0000000c     nortos_cc26x2.a : SwiP_nortos.oem4f (.text:SwiP_getTrigger)
-                  00003254    0000000c                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_getFreq)
-                  00003260    0000000a     drivers_cc26x2.a : PWM.oem4f (.text:PWM_setDuty)
-                  0000326a    0000000a                      : PWM.oem4f (.text:PWM_start)
-                  00003274    0000000a                      : PWM.oem4f (.text:PWM_stop)
-                  0000327e    00000008                      : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_setLoadValue)
-                  00003286    00000008                      : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_setMatchValue)
-                  0000328e    00000008     nortos_cc26x2.a : HwiPCC26XX_nortos.oem4f (.text:HwiP_restore)
-                  00003296    00000006                     : ClockPTimer_nortos.oem4f (.text:ClockP_stop)
-                  0000329c    00000006     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_getValue)
-                  000032a2    00000006     driverlib.lib : cpu.obj (.text:NOROM_CPUdelay)
-                  000032a8    00000006     nortos_cc26x2.a : QueueP_nortos.oem4f (.text:QueueP_init)
-                  000032ae    00000006     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:delayUs)
-                  000032b4    00000004     nortos_cc26x2.a : PowerCC26X2_nortos.oem4f (.text:CPUwfi)
-                  000032b8    00000004                     : ClockPTimer_nortos.oem4f (.text:ClockP_isActive)
-                  000032bc    00000004                     : ClockPTimer_nortos.oem4f (.text:ClockP_setTimeout)
-                  000032c0    00000004                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_enable)
-                  000032c4    00000004                     : QueueP_nortos.oem4f (.text:QueueP_head)
-                  000032c8    00000004                     : QueueP_nortos.oem4f (.text:QueueP_next)
-                  000032cc    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
-                  000032d0    00000004                                   : exit.c.obj (.text:abort:abort)
-                  000032d4    00000004     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:configureRFCoreClocks)
-                  000032d8    00000004                      : PowerCC26X2.oem4f (.text:nopResourceHandler)
-                  000032dc    00000002     nortos_cc26x2.a : startup_cc13x2_cc26x2_ccs.oem4f (.text:faultISR)
-                  000032de    00000002                     : startup_cc13x2_cc26x2_ccs.oem4f (.text:intDefaultHandler)
-                  000032e0    00000002                     : startup_cc13x2_cc26x2_ccs.oem4f (.text:nmiISR)
-                  000032e2    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : div0.asm.obj (.text)
+                  0000276c    00000040     pwmled2.obj (.text:informUserOfStartup)
+                  000027ac    0000003c     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PIN_setOutputValue)
+                  000027e8    00000038                      : PINCC26XX.oem4f (.text:PIN_setConfig)
+                  00002820    00000038     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_getCurrentTick)
+                  00002858    00000038                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_initDevice)
+                  00002890    00000038     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:notify)
+                  000028c8    00000036     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_setNextTick)
+                  000028fe    00000002                     : SemaphoreP_nortos.oem4f (.text:SemaphoreP_destruct)
+                  00002900    00000034                     : ClockPTimer_nortos.oem4f (.text:ClockP_getTicksUntilInterrupt)
+                  00002934    00000034     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.text:GPTimerCC26XXSetLoadMatch)
+                  00002968    00000034                      : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_configureDebugStall)
+                  0000299c    00000034     driverlib.lib : aux_sysif.obj (.text:NOROM_AUXSYSIFOpModeChange)
+                  000029d0    00000034                   : interrupt.obj (.text:NOROM_IntRegister)
+                  00002a04    00000034                   : sys_ctrl.obj (.text:NOROM_SysCtrlIdle)
+                  00002a38    00000034     drivers_cc26x2.a : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_getperiodCounts)
+                  00002a6c    00000030                      : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_close)
+                  00002a9c    00000030                      : PINCC26XX.oem4f (.text:PINCC26XX_setMux)
+                  00002acc    00000030                      : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_start)
+                  00002afc    00000030                      : PowerCC26X2.oem4f (.text:Power_releaseConstraint)
+                  00002b2c    00000030                      : PowerCC26X2.oem4f (.text:Power_setConstraint)
+                  00002b5c    00000030     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00:_c_int00)
+                  00002b8c    0000002c     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_getTimerValue)
+                  00002bb8    0000002c                      : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_close)
+                  00002be4    0000002c                      : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_stop)
+                  00002c10    0000002c     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_setThreshold)
+                  00002c3c    0000002c     pwmled2.obj (.text:updateDutyCycle)
+                  00002c68    00000028     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:oscillatorISR)
+                  00002c90    00000024     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:ClockP_getTicks)
+                  00002cb4    00000024                     : ClockPTimer_nortos.oem4f (.text:ClockP_scheduleNextTick)
+                  00002cd8    00000024                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_dispatch)
+                  00002cfc    00000024     driverlib.lib : osc.obj (.text:NOROM_OSCHF_TurnOnXosc)
+                  00002d20    00000024     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_getMaxTicks)
+                  00002d44    00000024     drivers_cc26x2.a : PowerCC26X2_calibrateRCOSC.oem4f (.text:getTdcSemaphore)
+                  00002d68    00000024     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:sleepTicks)
+                  00002d8c    00000020     ti_drivers_config.obj (.text:Board_init)
+                  00002dac    00000020     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:ClockP_add)
+                  00002dcc    00000020     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PINCC26XX_setIoCfgMux)
+                  00002dec    00000020     nortos_cc26x2.a : QueueP_nortos.oem4f (.text:QueueP_put)
+                  00002e0c    00000020                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_dynamicStub)
+                  00002e2c    00000020     pwmled2.obj (.text:mainThread)
+                  00002e4c    0000001e     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PIN_close)
+                  00002e6a    0000001e                      : PowerCC26X2.oem4f (.text:Power_getTransitionLatency)
+                  00002e88    0000001e     nortos_cc26x2.a : SemaphoreP_nortos.oem4f (.text:SemaphoreP_constructBinary)
+                  00002ea6    0000001e                     : SwiP_nortos.oem4f (.text:SwiP_or)
+                  00002ec4    0000001c     driverlib.lib : chipinfo.obj (.text:NOROM_ChipInfo_GetChipFamily)
+                  00002ee0    0000001c     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PIN_hwi)
+                  00002efc    0000001c     nortos_cc26x2.a : SwiP_nortos.oem4f (.text:SwiP_disable)
+                  00002f18    0000001c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  00002f34    0000001a     drivers_cc26x2.a : PWMTimerCC26XX.oem4f (.text:PWMTimerCC26XX_control)
+                  00002f4e    0000001a                      : PowerCC26X2.oem4f (.text:PowerCC26XX_calibrate)
+                  00002f68    0000001a     nortos_cc26x2.a : QueueP_nortos.oem4f (.text:QueueP_get)
+                  00002f82    00000018                     : ClockPTimer_nortos.oem4f (.text:ClockP_destruct)
+                  00002f9a    00000002                     : SemaphoreP_nortos.oem4f (.text:clkFxn)
+                  00002f9c    00000018                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_inISR)
+                  00002fb4    00000018     driverlib.lib : chipinfo.obj (.text:NOROM_ChipInfo_GetPackageType)
+                  00002fcc    00000018     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:Power_idleFunc)
+                  00002fe4    00000018     nortos_cc26x2.a : TimerPCC26XX_nortos.oem4f (.text:TimerP_startup)
+                  00002ffc    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.c.obj (.text:_args_main)
+                  00003014    00000018                                   : ll_mul_t2.asm.obj (.text)
+                  0000302c    00000018     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:switchToTCXO)
+                  00003044    00000016     driverlib.lib : chipinfo.obj (.text:NOROM_ThisLibraryIsFor_CC13x2_CC26x2_HwRev20AndLater_HaltIfViolated)
+                  0000305a    00000016     nortos_cc26x2.a : SwiP_nortos.oem4f (.text:maxbit)
+                  00003070    00000014     drivers_cc26x2.a : PWM.oem4f (.text:PWM_Params_init)
+                  00003084    00000014                      : PowerCC26X2_calibrateRCOSC.oem4f (.text:PowerCC26X2_calibrate)
+                  00003098    00000014                      : PowerCC26X2.oem4f (.text:Power_disablePolicy)
+                  000030ac    00000014     nortos_cc26x2.a : SwiP_nortos.oem4f (.text:SwiP_handleHwi)
+                  000030c0    00000014                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_getCount64)
+                  000030d4    00000014                     : startup_cc13x2_cc26x2_ccs.oem4f (.text:resetISR)
+                  000030e8    00000012     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_Params_init)
+                  000030fa    00000012     nortos_cc26x2.a : HwiPCC26XX_nortos.oem4f (.text:HwiP_Params_init)
+                  0000310c    00000012     main_nortos.obj (.text:main)
+                  0000311e    00000002     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:emptyClockFunc)
+                  00003120    00000010     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:ClockP_Params_init)
+                  00003130    00000010                     : ClockPTimer_nortos.oem4f (.text:ClockP_getCpuFreq)
+                  00003140    00000010                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_disable)
+                  00003150    00000010                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_post)
+                  00003160    00000010     drivers_cc26x2.a : PINCC26XX.oem4f (.text:PINCC26XX_getPinCount)
+                  00003170    00000010     nortos_cc26x2.a : PowerCC26X2_nortos.oem4f (.text:PowerCC26XX_schedulerDisable)
+                  00003180    00000010     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:Power_enablePolicy)
+                  00003190    00000010     nortos_cc26x2.a : SemaphoreP_nortos.oem4f (.text:SemaphoreP_Params_init)
+                  000031a0    00000010                     : SwiP_nortos.oem4f (.text:SwiP_Params_init)
+                  000031b0    00000010                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_Params_init)
+                  000031c0    0000000e                     : QueueP_nortos.oem4f (.text:QueueP_empty)
+                  000031ce    0000000e                     : QueueP_nortos.oem4f (.text:QueueP_remove)
+                  000031dc    0000000e     pwmled2.obj (.text:cleanup)
+                  000031ea    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  000031f8    0000000c     nortos_cc26x2.a : ClockPTimer_nortos.oem4f (.text:ClockP_doTick)
+                  00003204    0000000c                     : ClockPTimer_nortos.oem4f (.text:ClockP_getSystemTickPeriod)
+                  00003210    0000000c     driverlib.lib : cpu.obj (.text:NOROM_CPUcpsid)
+                  0000321c    0000000c                   : cpu.obj (.text:NOROM_CPUcpsie)
+                  00003228    0000000c     nortos_cc26x2.a : PowerCC26X2_nortos.oem4f (.text:PowerCC26XX_schedulerRestore)
+                  00003234    0000000c     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:Power_getConstraintMask)
+                  00003240    0000000c                      : PowerCC26X2.oem4f (.text:Power_getDependencyCount)
+                  0000324c    0000000c     nortos_cc26x2.a : SwiP_nortos.oem4f (.text:SwiP_getTrigger)
+                  00003258    0000000c                     : TimerPCC26XX_nortos.oem4f (.text:TimerP_getFreq)
+                  00003264    0000000a     drivers_cc26x2.a : PWM.oem4f (.text:PWM_setDuty)
+                  0000326e    0000000a                      : PWM.oem4f (.text:PWM_start)
+                  00003278    0000000a                      : PWM.oem4f (.text:PWM_stop)
+                  00003282    00000008                      : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_setLoadValue)
+                  0000328a    00000008                      : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_setMatchValue)
+                  00003292    00000008     nortos_cc26x2.a : HwiPCC26XX_nortos.oem4f (.text:HwiP_restore)
+                  0000329a    00000006                     : ClockPTimer_nortos.oem4f (.text:ClockP_stop)
+                  000032a0    00000006     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.text:GPTimerCC26XX_getValue)
+                  000032a6    00000006     driverlib.lib : cpu.obj (.text:NOROM_CPUdelay)
+                  000032ac    00000006     nortos_cc26x2.a : QueueP_nortos.oem4f (.text:QueueP_init)
+                  000032b2    00000006     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:delayUs)
+                  000032b8    00000004     nortos_cc26x2.a : PowerCC26X2_nortos.oem4f (.text:CPUwfi)
+                  000032bc    00000004                     : ClockPTimer_nortos.oem4f (.text:ClockP_isActive)
+                  000032c0    00000004                     : ClockPTimer_nortos.oem4f (.text:ClockP_setTimeout)
+                  000032c4    00000004                     : HwiPCC26XX_nortos.oem4f (.text:HwiP_enable)
+                  000032c8    00000004                     : QueueP_nortos.oem4f (.text:QueueP_head)
+                  000032cc    00000004                     : QueueP_nortos.oem4f (.text:QueueP_next)
+                  000032d0    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  000032d4    00000004                                   : exit.c.obj (.text:abort:abort)
+                  000032d8    00000004     drivers_cc26x2.a : PowerCC26X2.oem4f (.text:configureRFCoreClocks)
+                  000032dc    00000004                      : PowerCC26X2.oem4f (.text:nopResourceHandler)
+                  000032e0    00000002     nortos_cc26x2.a : startup_cc13x2_cc26x2_ccs.oem4f (.text:faultISR)
+                  000032e2    00000002                     : startup_cc13x2_cc26x2_ccs.oem4f (.text:intDefaultHandler)
+                  000032e4    00000002                     : startup_cc13x2_cc26x2_ccs.oem4f (.text:nmiISR)
+                  000032e6    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : div0.asm.obj (.text)
 
-.const     0    000032e4    00000136     
-                  000032e4    00000054     drivers_cc26x2.a : PowerCC26X2.oem4f (.const:resourceDB)
-                  00003338    00000024                      : PWMTimerCC26XX.oem4f (.const:PWMTimerCC26XX_fxnTable)
-                  0000335c    0000001c                      : GPTimerCC26XX.oem4f (.const:GPT_LUT)
-                  00003378    00000018                      : PWM.oem4f (.const:PWM_defaultParams)
-                  00003390    00000014     ti_drivers_config.obj (.const:$P$T1$2)
-                  000033a4    00000014     ti_drivers_config.obj (.const:PowerCC26X2_config)
-                  000033b8    00000010     nortos_cc26x2.a : SwiP_nortos.oem4f (.const:SwiP_defaultParams)
-                  000033c8    0000000c     ti_drivers_config.obj (.const:GPTimerCC26XX_config)
-                  000033d4    0000000c     ti_drivers_config.obj (.const:PWM_config)
-                  000033e0    0000000c     ti_drivers_config.obj (.const:gptimerCC26XXHWAttrs)
-                  000033ec    00000008     driverlib.lib : aux_sysif.obj (.const:$O1$$)
-                  000033f4    00000008     ti_drivers_config.obj (.const:$P$T0$1)
-                  000033fc    00000008     ti_drivers_config.obj (.const:BoardGpioInitTable)
-                  00003404    00000008     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.const:GPT_DefaultParams)
-                  0000340c    00000008     ti_drivers_config.obj (.const:PINCC26XX_hwAttrs)
-                  00003414    00000004     ti_drivers_config.obj (.const)
-                  00003418    00000002     ti_drivers_config.obj (.const:pwmTimerCC26XXHWAttrs)
+.const     0    000032e8    00000136     
+                  000032e8    00000054     drivers_cc26x2.a : PowerCC26X2.oem4f (.const:resourceDB)
+                  0000333c    00000024                      : PWMTimerCC26XX.oem4f (.const:PWMTimerCC26XX_fxnTable)
+                  00003360    0000001c                      : GPTimerCC26XX.oem4f (.const:GPT_LUT)
+                  0000337c    00000018                      : PWM.oem4f (.const:PWM_defaultParams)
+                  00003394    00000014     ti_drivers_config.obj (.const:$P$T1$2)
+                  000033a8    00000014     ti_drivers_config.obj (.const:PowerCC26X2_config)
+                  000033bc    00000010     nortos_cc26x2.a : SwiP_nortos.oem4f (.const:SwiP_defaultParams)
+                  000033cc    0000000c     ti_drivers_config.obj (.const:GPTimerCC26XX_config)
+                  000033d8    0000000c     ti_drivers_config.obj (.const:PWM_config)
+                  000033e4    0000000c     ti_drivers_config.obj (.const:gptimerCC26XXHWAttrs)
+                  000033f0    00000008     driverlib.lib : aux_sysif.obj (.const:$O1$$)
+                  000033f8    00000008     ti_drivers_config.obj (.const:$P$T0$1)
+                  00003400    00000008     ti_drivers_config.obj (.const:BoardGpioInitTable)
+                  00003408    00000008     drivers_cc26x2.a : GPTimerCC26XX.oem4f (.const:GPT_DefaultParams)
+                  00003410    00000008     ti_drivers_config.obj (.const:PINCC26XX_hwAttrs)
+                  00003418    00000004     ti_drivers_config.obj (.const)
+                  0000341c    00000002     ti_drivers_config.obj (.const:pwmTimerCC26XXHWAttrs)
 
 .binit     0    00000000    00000000     
 
@@ -333,18 +333,18 @@ section   page    origin      length       input sections
 __llvm_prf_cnts 
 *          0    20000000    00000000     UNINITIALIZED
 
-.args      0    0000341c    00000008     
-                  0000341c    00000008     --HOLE-- [fill = 0]
+.args      0    00003420    00000008     
+                  00003420    00000008     --HOLE-- [fill = 0]
 
 MODULE SUMMARY
 
        Module                             code    ro data   rw data
        ------                             ----    -------   -------
     .\
-       pwmled2.obj                        228     0         4      
+       pwmled2.obj                        232     0         4      
        main_nortos.obj                    18      0         0      
     +--+----------------------------------+-------+---------+---------+
-       Total:                             246     0         4      
+       Total:                             250     0         4      
                                                                    
     .\syscfg\
        ti_drivers_config.obj              306     106       108    
@@ -407,7 +407,7 @@ MODULE SUMMARY
        Stack:                             0       0         1024   
        Linker Generated:                  0       101       0      
     +--+----------------------------------+-------+---------+---------+
-       Grand Total:                       12812   715       19032  
+       Grand Total:                       12816   715       19032  
 
 
 LINKER GENERATED COPY TABLES
@@ -430,161 +430,161 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address   name                                                               
 -------   ----                                                               
-000033fc  BoardGpioInitTable                                                 
-00002d89  Board_init                                                         
+00003400  BoardGpioInitTable                                                 
+00002d8d  Board_init                                                         
 00001727  Board_initHook                                                     
 000019d1  Board_sendExtFlashByte                                             
 000026ad  Board_shutDownExtFlash                                             
 000022c5  Board_wakeUpExtFlash                                               
-000032d1  C$$EXIT                                                            
-00003416  CONFIG_GPTIMER_0_CONST                                             
-00003414  CONFIG_PWM_1_CONST                                                 
-0000311d  ClockP_Params_init                                                 
-00002da9  ClockP_add                                                         
+000032d5  C$$EXIT                                                            
+0000341a  CONFIG_GPTIMER_0_CONST                                             
+00003418  CONFIG_PWM_1_CONST                                                 
+00003121  ClockP_Params_init                                                 
+00002dad  ClockP_add                                                         
 000023f5  ClockP_construct                                                   
-00002f7f  ClockP_destruct                                                    
-000031f5  ClockP_doTick                                                      
-0000312d  ClockP_getCpuFreq                                                  
-00003201  ClockP_getSystemTickPeriod                                         
-00002c8d  ClockP_getTicks                                                    
-000028fd  ClockP_getTicksUntilInterrupt                                      
-000032b9  ClockP_isActive                                                    
-00002cb1  ClockP_scheduleNextTick                                            
-000032bd  ClockP_setTimeout                                                  
+00002f83  ClockP_destruct                                                    
+000031f9  ClockP_doTick                                                      
+00003131  ClockP_getCpuFreq                                                  
+00003205  ClockP_getSystemTickPeriod                                         
+00002c91  ClockP_getTicks                                                    
+00002901  ClockP_getTicksUntilInterrupt                                      
+000032bd  ClockP_isActive                                                    
+00002cb5  ClockP_scheduleNextTick                                            
+000032c1  ClockP_setTimeout                                                  
 00001a55  ClockP_start                                                       
 000010cd  ClockP_startup                                                     
-00003297  ClockP_stop                                                        
+0000329b  ClockP_stop                                                        
 2000456c  ClockP_tickPeriod                                                  
 00001e11  ClockP_usleep                                                      
 00001bd5  ClockP_walkQueueDynamic                                            
 00001181  ClockP_workFuncDynamic                                             
-000030e5  GPTimerCC26XX_Params_init                                          
-00002a69  GPTimerCC26XX_close                                                
-000033c8  GPTimerCC26XX_config                                               
-00002965  GPTimerCC26XX_configureDebugStall                                  
-0000329d  GPTimerCC26XX_getValue                                             
+000030e9  GPTimerCC26XX_Params_init                                          
+00002a6d  GPTimerCC26XX_close                                                
+000033cc  GPTimerCC26XX_config                                               
+00002969  GPTimerCC26XX_configureDebugStall                                  
+000032a1  GPTimerCC26XX_getValue                                             
 00001729  GPTimerCC26XX_open                                                 
-0000327f  GPTimerCC26XX_setLoadValue                                         
-00003287  GPTimerCC26XX_setMatchValue                                        
+00003283  GPTimerCC26XX_setLoadValue                                         
+0000328b  GPTimerCC26XX_setMatchValue                                        
 0000235d  GPTimerCC26XX_start                                                
 000020d1  GPTimerCC26XX_stop                                                 
-00003417  GPTimer_count                                                      
-000030f7  HwiP_Params_init                                                   
+0000341b  GPTimer_count                                                      
+000030fb  HwiP_Params_init                                                   
 00001ad5  HwiP_construct                                                     
-0000313d  HwiP_disable                                                       
-000032c1  HwiP_enable                                                        
-00002f99  HwiP_inISR                                                         
-0000314d  HwiP_post                                                          
-0000328f  HwiP_restore                                                       
+00003141  HwiP_disable                                                       
+000032c5  HwiP_enable                                                        
+00002f9d  HwiP_inISR                                                         
+00003151  HwiP_post                                                          
+00003293  HwiP_restore                                                       
 20004574  HwiP_swiPIntNum                                                    
 UNDEFED   ITM_flush                                                          
 UNDEFED   ITM_restore                                                        
-00002999  NOROM_AUXSYSIFOpModeChange                                         
-0000320d  NOROM_CPUcpsid                                                     
-00003219  NOROM_CPUcpsie                                                     
-000032a3  NOROM_CPUdelay                                                     
-00002ec1  NOROM_ChipInfo_GetChipFamily                                       
+0000299d  NOROM_AUXSYSIFOpModeChange                                         
+00003211  NOROM_CPUcpsid                                                     
+0000321d  NOROM_CPUcpsie                                                     
+000032a7  NOROM_CPUdelay                                                     
+00002ec5  NOROM_ChipInfo_GetChipFamily                                       
 00001da5  NOROM_ChipInfo_GetChipType                                         
 00002515  NOROM_ChipInfo_GetHwRevision                                       
-00002fb1  NOROM_ChipInfo_GetPackageType                                      
-000029cd  NOROM_IntRegister                                                  
+00002fb5  NOROM_ChipInfo_GetPackageType                                      
+000029d1  NOROM_IntRegister                                                  
 000017b1  NOROM_OSCHF_AttemptToSwitchToXosc                                  
 00001e79  NOROM_OSCHF_SwitchToRcOscTurnOffXosc                               
-00002cf9  NOROM_OSCHF_TurnOnXosc                                             
+00002cfd  NOROM_OSCHF_TurnOnXosc                                             
 000026ed  NOROM_OSC_HPOSCRelativeFrequencyOffsetGet                          
 00002181  NOROM_PRCMPowerDomainsAllOff                                       
 000023a9  NOROM_PRCMPowerDomainsAllOn                                        
 000015f9  NOROM_SetupTrimDevice                                              
-00002a01  NOROM_SysCtrlIdle                                                  
+00002a05  NOROM_SysCtrlIdle                                                  
 00001b55  NOROM_SysCtrlSetRechargeBeforePowerDown                            
 00000b15  NOROM_SysCtrlStandby                                               
-00003041  NOROM_ThisLibraryIsFor_CC13x2_CC26x2_HwRev20AndLater_HaltIfViolated
-000032c1  NoRTOS_start                                                       
-0000315d  PINCC26XX_getPinCount                                              
-0000340c  PINCC26XX_hwAttrs                                                  
-00002a99  PINCC26XX_setMux                                                   
+00003045  NOROM_ThisLibraryIsFor_CC13x2_CC26x2_HwRev20AndLater_HaltIfViolated
+000032c5  NoRTOS_start                                                       
+00003161  PINCC26XX_getPinCount                                              
+00003410  PINCC26XX_hwAttrs                                                  
+00002a9d  PINCC26XX_setMux                                                   
 00001d35  PIN_add                                                            
-00002e49  PIN_close                                                          
+00002e4d  PIN_close                                                          
 000000d9  PIN_init                                                           
 0000122d  PIN_open                                                           
 00002019  PIN_remove                                                         
-000027e5  PIN_setConfig                                                      
-0000276d  PIN_setOutputValue                                                 
-00002bb5  PWMTimerCC26XX_close                                               
-00002f31  PWMTimerCC26XX_control                                             
-00003338  PWMTimerCC26XX_fxnTable                                            
+000027e9  PIN_setConfig                                                      
+000027ad  PIN_setOutputValue                                                 
+00002bb9  PWMTimerCC26XX_close                                               
+00002f35  PWMTimerCC26XX_control                                             
+0000333c  PWMTimerCC26XX_fxnTable                                            
 000022c3  PWMTimerCC26XX_init                                                
 00000ce5  PWMTimerCC26XX_open                                                
 0000243d  PWMTimerCC26XX_setDuty                                             
 00001425  PWMTimerCC26XX_setDutyAndPeriod                                    
 00002075  PWMTimerCC26XX_setPeriod                                           
-00002ac9  PWMTimerCC26XX_start                                               
-00002be1  PWMTimerCC26XX_stop                                                
-0000306d  PWM_Params_init                                                    
-000033d4  PWM_config                                                         
-00003415  PWM_count                                                          
-00003378  PWM_defaultParams                                                  
+00002acd  PWMTimerCC26XX_start                                               
+00002be5  PWMTimerCC26XX_stop                                                
+00003071  PWM_Params_init                                                    
+000033d8  PWM_config                                                         
+00003419  PWM_count                                                          
+0000337c  PWM_defaultParams                                                  
 0000259d  PWM_init                                                           
 0000272d  PWM_open                                                           
-00003261  PWM_setDuty                                                        
-0000326b  PWM_start                                                          
-00003275  PWM_stop                                                           
+00003265  PWM_setDuty                                                        
+0000326f  PWM_start                                                          
+00003279  PWM_stop                                                           
 00002485  PowerCC26X2_RCOSC_clockFunc                                        
 00001cc1  PowerCC26X2_auxISR                                                 
-00003081  PowerCC26X2_calibrate                                              
-000033a4  PowerCC26X2_config                                                 
+00003085  PowerCC26X2_calibrate                                              
+000033a8  PowerCC26X2_config                                                 
 00002129  PowerCC26X2_initiateCalibration                                    
 200042d4  PowerCC26X2_module                                                 
-00002f4b  PowerCC26XX_calibrate                                              
-0000316d  PowerCC26XX_schedulerDisable                                       
-00003225  PowerCC26XX_schedulerRestore                                       
+00002f4f  PowerCC26XX_calibrate                                              
+00003171  PowerCC26XX_schedulerDisable                                       
+00003229  PowerCC26XX_schedulerRestore                                       
 00000c05  PowerCC26XX_standbyPolicy                                          
-00003095  Power_disablePolicy                                                
-0000317d  Power_enablePolicy                                                 
-00003231  Power_getConstraintMask                                            
-0000323d  Power_getDependencyCount                                           
-00002e67  Power_getTransitionLatency                                         
-00002fc9  Power_idleFunc                                                     
+00003099  Power_disablePolicy                                                
+00003181  Power_enablePolicy                                                 
+00003235  Power_getConstraintMask                                            
+00003241  Power_getDependencyCount                                           
+00002e6b  Power_getTransitionLatency                                         
+00002fcd  Power_idleFunc                                                     
 0000076d  Power_init                                                         
-00002af9  Power_releaseConstraint                                            
+00002afd  Power_releaseConstraint                                            
 00000e99  Power_releaseDependency                                            
-00002b29  Power_setConstraint                                                
+00002b2d  Power_setConstraint                                                
 00001015  Power_setDependency                                                
 000002b9  Power_sleep                                                        
-000031bd  QueueP_empty                                                       
-00002f65  QueueP_get                                                         
-000032c5  QueueP_head                                                        
-000032a9  QueueP_init                                                        
-000032c9  QueueP_next                                                        
-00002de9  QueueP_put                                                         
-000031cb  QueueP_remove                                                      
-0000318d  SemaphoreP_Params_init                                             
+000031c1  QueueP_empty                                                       
+00002f69  QueueP_get                                                         
+000032c9  QueueP_head                                                        
+000032ad  QueueP_init                                                        
+000032cd  QueueP_next                                                        
+00002ded  QueueP_put                                                         
+000031cf  QueueP_remove                                                      
+00003191  SemaphoreP_Params_init                                             
 00002225  SemaphoreP_construct                                               
-00002e85  SemaphoreP_constructBinary                                         
+00002e89  SemaphoreP_constructBinary                                         
 20004558  SemaphoreP_defaultParams                                           
-000028fb  SemaphoreP_destruct                                                
+000028ff  SemaphoreP_destruct                                                
 00001385  SemaphoreP_pend                                                    
 000025e1  SemaphoreP_post                                                    
-0000319d  SwiP_Params_init                                                   
+000031a1  SwiP_Params_init                                                   
 00000dc1  SwiP_construct                                                     
-00002ef9  SwiP_disable                                                       
+00002efd  SwiP_disable                                                       
 000014c1  SwiP_dispatch                                                      
-00003249  SwiP_getTrigger                                                    
-00002ea3  SwiP_or                                                            
+0000324d  SwiP_getTrigger                                                    
+00002ea7  SwiP_or                                                            
 00001ee1  SwiP_post                                                          
 00002625  SwiP_restore                                                       
-000031ad  TimerP_Params_init                                                 
+000031b1  TimerP_Params_init                                                 
 00000f59  TimerP_construct                                                   
-00002e09  TimerP_dynamicStub                                                 
-000030bd  TimerP_getCount64                                                  
-0000281d  TimerP_getCurrentTick                                              
-00003255  TimerP_getFreq                                                     
-00002d1d  TimerP_getMaxTicks                                                 
-00002855  TimerP_initDevice                                                  
-000028c5  TimerP_setNextTick                                                 
-00002c0d  TimerP_setThreshold                                                
+00002e0d  TimerP_dynamicStub                                                 
+000030c1  TimerP_getCount64                                                  
+00002821  TimerP_getCurrentTick                                              
+00003259  TimerP_getFreq                                                     
+00002d21  TimerP_getMaxTicks                                                 
+00002859  TimerP_initDevice                                                  
+000028c9  TimerP_setNextTick                                                 
+00002c11  TimerP_setThreshold                                                
 00001f49  TimerP_start                                                       
-00002fe1  TimerP_startup                                                     
+00002fe5  TimerP_startup                                                     
 20014000  __STACK_END                                                        
 00000400  __STACK_SIZE                                                       
 00004000  __SYSMEM_SIZE                                                      
@@ -594,55 +594,55 @@ UNDEFED   ITM_restore
 00003468  __TI_Handler_Table_Limit                                           
 00002669  __TI_auto_init_nobinit_nopinit                                     
 00001fb1  __TI_decompress_lzss                                               
-000031e7  __TI_decompress_none                                               
+000031eb  __TI_decompress_none                                               
 ffffffff  __TI_pprof_out_hndl                                                
 ffffffff  __TI_prof_data_size                                                
 ffffffff  __TI_prof_data_start                                               
 00000000  __TI_static_base__                                                 
-00002f15  __TI_zero_init_nomemset                                            
-000032e3  __aeabi_idiv0                                                      
-000032e3  __aeabi_ldiv0                                                      
-00003011  __aeabi_lmul                                                       
+00002f19  __TI_zero_init_nomemset                                            
+000032e7  __aeabi_idiv0                                                      
+000032e7  __aeabi_ldiv0                                                      
+00003015  __aeabi_lmul                                                       
 0000155d  __aeabi_memcpy                                                     
 0000155d  __aeabi_memcpy4                                                    
 0000155d  __aeabi_memcpy8                                                    
 00001691  __aeabi_uldivmod                                                   
 ffffffff  __binit__                                                          
-0000341c  __c_args__                                                         
+00003420  __c_args__                                                         
 00057fa8  __ccfg                                                             
 UNDEFED   __mpu_init                                                         
 20013c00  __stack                                                            
 20000000  __start___llvm_prf_cnts                                            
 20000000  __stop___llvm_prf_cnts                                             
-00002ff9  _args_main                                                         
-00002b59  _c_int00                                                           
+00002ffd  _args_main                                                         
+00002b5d  _c_int00                                                           
 2000451c  _hposcCoeffs                                                       
 20000000  _sys_memory                                                        
 UNDEFED   _system_post_cinit                                                 
-000032cd  _system_pre_init                                                   
-000032d1  abort                                                              
+000032d1  _system_pre_init                                                   
+000032d5  abort                                                              
 ffffffff  binit                                                              
-000031d9  cleanup                                                            
-00002f97  clkFxn                                                             
+000031dd  cleanup                                                            
+00002f9b  clkFxn                                                             
 200042ad  driverlib_release_0_59848                                          
 20004600  g_pfnRAMVectors                                                    
 00000000  g_pfnVectors                                                       
-000033e0  gptimerCC26XXHWAttrs                                               
+000033e4  gptimerCC26XXHWAttrs                                               
 2000416c  gptimerCC26XXObjects                                               
-000027a9  informUserOfStartup                                                
+0000276d  informUserOfStartup                                                
 00002275  initializePWM                                                      
-00003109  main                                                               
-00002e29  mainThread                                                         
+0000310d  main                                                               
+00002e2d  mainThread                                                         
 0000155d  memcpy                                                             
 200040a0  pinHandleTable                                                     
 20004564  pinLowerBound                                                      
 20004560  pinUpperBound                                                      
 20004578  pwm1                                                               
-00003418  pwmTimerCC26XXHWAttrs                                              
+0000341c  pwmTimerCC26XXHWAttrs                                              
 2000422c  pwmTimerCC26XXObjects                                              
-000030d1  resetISR                                                           
-000032e4  resourceDB                                                         
-00002c39  updateDutyCycle                                                    
+000030d5  resetISR                                                           
+000032e8  resourceDB                                                         
+00002c3d  updateDutyCycle                                                    
 00001e11  usleep                                                             
 
 
@@ -714,123 +714,123 @@ address   name
 000026ad  Board_shutDownExtFlash                                             
 000026ed  NOROM_OSC_HPOSCRelativeFrequencyOffsetGet                          
 0000272d  PWM_open                                                           
-0000276d  PIN_setOutputValue                                                 
-000027a9  informUserOfStartup                                                
-000027e5  PIN_setConfig                                                      
-0000281d  TimerP_getCurrentTick                                              
-00002855  TimerP_initDevice                                                  
-000028c5  TimerP_setNextTick                                                 
-000028fb  SemaphoreP_destruct                                                
-000028fd  ClockP_getTicksUntilInterrupt                                      
-00002965  GPTimerCC26XX_configureDebugStall                                  
-00002999  NOROM_AUXSYSIFOpModeChange                                         
-000029cd  NOROM_IntRegister                                                  
-00002a01  NOROM_SysCtrlIdle                                                  
-00002a69  GPTimerCC26XX_close                                                
-00002a99  PINCC26XX_setMux                                                   
-00002ac9  PWMTimerCC26XX_start                                               
-00002af9  Power_releaseConstraint                                            
-00002b29  Power_setConstraint                                                
-00002b59  _c_int00                                                           
-00002bb5  PWMTimerCC26XX_close                                               
-00002be1  PWMTimerCC26XX_stop                                                
-00002c0d  TimerP_setThreshold                                                
-00002c39  updateDutyCycle                                                    
-00002c8d  ClockP_getTicks                                                    
-00002cb1  ClockP_scheduleNextTick                                            
-00002cf9  NOROM_OSCHF_TurnOnXosc                                             
-00002d1d  TimerP_getMaxTicks                                                 
-00002d89  Board_init                                                         
-00002da9  ClockP_add                                                         
-00002de9  QueueP_put                                                         
-00002e09  TimerP_dynamicStub                                                 
-00002e29  mainThread                                                         
-00002e49  PIN_close                                                          
-00002e67  Power_getTransitionLatency                                         
-00002e85  SemaphoreP_constructBinary                                         
-00002ea3  SwiP_or                                                            
-00002ec1  NOROM_ChipInfo_GetChipFamily                                       
-00002ef9  SwiP_disable                                                       
-00002f15  __TI_zero_init_nomemset                                            
-00002f31  PWMTimerCC26XX_control                                             
-00002f4b  PowerCC26XX_calibrate                                              
-00002f65  QueueP_get                                                         
-00002f7f  ClockP_destruct                                                    
-00002f97  clkFxn                                                             
-00002f99  HwiP_inISR                                                         
-00002fb1  NOROM_ChipInfo_GetPackageType                                      
-00002fc9  Power_idleFunc                                                     
-00002fe1  TimerP_startup                                                     
-00002ff9  _args_main                                                         
-00003011  __aeabi_lmul                                                       
-00003041  NOROM_ThisLibraryIsFor_CC13x2_CC26x2_HwRev20AndLater_HaltIfViolated
-0000306d  PWM_Params_init                                                    
-00003081  PowerCC26X2_calibrate                                              
-00003095  Power_disablePolicy                                                
-000030bd  TimerP_getCount64                                                  
-000030d1  resetISR                                                           
-000030e5  GPTimerCC26XX_Params_init                                          
-000030f7  HwiP_Params_init                                                   
-00003109  main                                                               
-0000311d  ClockP_Params_init                                                 
-0000312d  ClockP_getCpuFreq                                                  
-0000313d  HwiP_disable                                                       
-0000314d  HwiP_post                                                          
-0000315d  PINCC26XX_getPinCount                                              
-0000316d  PowerCC26XX_schedulerDisable                                       
-0000317d  Power_enablePolicy                                                 
-0000318d  SemaphoreP_Params_init                                             
-0000319d  SwiP_Params_init                                                   
-000031ad  TimerP_Params_init                                                 
-000031bd  QueueP_empty                                                       
-000031cb  QueueP_remove                                                      
-000031d9  cleanup                                                            
-000031e7  __TI_decompress_none                                               
-000031f5  ClockP_doTick                                                      
-00003201  ClockP_getSystemTickPeriod                                         
-0000320d  NOROM_CPUcpsid                                                     
-00003219  NOROM_CPUcpsie                                                     
-00003225  PowerCC26XX_schedulerRestore                                       
-00003231  Power_getConstraintMask                                            
-0000323d  Power_getDependencyCount                                           
-00003249  SwiP_getTrigger                                                    
-00003255  TimerP_getFreq                                                     
-00003261  PWM_setDuty                                                        
-0000326b  PWM_start                                                          
-00003275  PWM_stop                                                           
-0000327f  GPTimerCC26XX_setLoadValue                                         
-00003287  GPTimerCC26XX_setMatchValue                                        
-0000328f  HwiP_restore                                                       
-00003297  ClockP_stop                                                        
-0000329d  GPTimerCC26XX_getValue                                             
-000032a3  NOROM_CPUdelay                                                     
-000032a9  QueueP_init                                                        
-000032b9  ClockP_isActive                                                    
-000032bd  ClockP_setTimeout                                                  
-000032c1  HwiP_enable                                                        
-000032c1  NoRTOS_start                                                       
-000032c5  QueueP_head                                                        
-000032c9  QueueP_next                                                        
-000032cd  _system_pre_init                                                   
-000032d1  C$$EXIT                                                            
-000032d1  abort                                                              
-000032e3  __aeabi_idiv0                                                      
-000032e3  __aeabi_ldiv0                                                      
-000032e4  resourceDB                                                         
-00003338  PWMTimerCC26XX_fxnTable                                            
-00003378  PWM_defaultParams                                                  
-000033a4  PowerCC26X2_config                                                 
-000033c8  GPTimerCC26XX_config                                               
-000033d4  PWM_config                                                         
-000033e0  gptimerCC26XXHWAttrs                                               
-000033fc  BoardGpioInitTable                                                 
-0000340c  PINCC26XX_hwAttrs                                                  
-00003414  CONFIG_PWM_1_CONST                                                 
-00003415  PWM_count                                                          
-00003416  CONFIG_GPTIMER_0_CONST                                             
-00003417  GPTimer_count                                                      
-00003418  pwmTimerCC26XXHWAttrs                                              
-0000341c  __c_args__                                                         
+0000276d  informUserOfStartup                                                
+000027ad  PIN_setOutputValue                                                 
+000027e9  PIN_setConfig                                                      
+00002821  TimerP_getCurrentTick                                              
+00002859  TimerP_initDevice                                                  
+000028c9  TimerP_setNextTick                                                 
+000028ff  SemaphoreP_destruct                                                
+00002901  ClockP_getTicksUntilInterrupt                                      
+00002969  GPTimerCC26XX_configureDebugStall                                  
+0000299d  NOROM_AUXSYSIFOpModeChange                                         
+000029d1  NOROM_IntRegister                                                  
+00002a05  NOROM_SysCtrlIdle                                                  
+00002a6d  GPTimerCC26XX_close                                                
+00002a9d  PINCC26XX_setMux                                                   
+00002acd  PWMTimerCC26XX_start                                               
+00002afd  Power_releaseConstraint                                            
+00002b2d  Power_setConstraint                                                
+00002b5d  _c_int00                                                           
+00002bb9  PWMTimerCC26XX_close                                               
+00002be5  PWMTimerCC26XX_stop                                                
+00002c11  TimerP_setThreshold                                                
+00002c3d  updateDutyCycle                                                    
+00002c91  ClockP_getTicks                                                    
+00002cb5  ClockP_scheduleNextTick                                            
+00002cfd  NOROM_OSCHF_TurnOnXosc                                             
+00002d21  TimerP_getMaxTicks                                                 
+00002d8d  Board_init                                                         
+00002dad  ClockP_add                                                         
+00002ded  QueueP_put                                                         
+00002e0d  TimerP_dynamicStub                                                 
+00002e2d  mainThread                                                         
+00002e4d  PIN_close                                                          
+00002e6b  Power_getTransitionLatency                                         
+00002e89  SemaphoreP_constructBinary                                         
+00002ea7  SwiP_or                                                            
+00002ec5  NOROM_ChipInfo_GetChipFamily                                       
+00002efd  SwiP_disable                                                       
+00002f19  __TI_zero_init_nomemset                                            
+00002f35  PWMTimerCC26XX_control                                             
+00002f4f  PowerCC26XX_calibrate                                              
+00002f69  QueueP_get                                                         
+00002f83  ClockP_destruct                                                    
+00002f9b  clkFxn                                                             
+00002f9d  HwiP_inISR                                                         
+00002fb5  NOROM_ChipInfo_GetPackageType                                      
+00002fcd  Power_idleFunc                                                     
+00002fe5  TimerP_startup                                                     
+00002ffd  _args_main                                                         
+00003015  __aeabi_lmul                                                       
+00003045  NOROM_ThisLibraryIsFor_CC13x2_CC26x2_HwRev20AndLater_HaltIfViolated
+00003071  PWM_Params_init                                                    
+00003085  PowerCC26X2_calibrate                                              
+00003099  Power_disablePolicy                                                
+000030c1  TimerP_getCount64                                                  
+000030d5  resetISR                                                           
+000030e9  GPTimerCC26XX_Params_init                                          
+000030fb  HwiP_Params_init                                                   
+0000310d  main                                                               
+00003121  ClockP_Params_init                                                 
+00003131  ClockP_getCpuFreq                                                  
+00003141  HwiP_disable                                                       
+00003151  HwiP_post                                                          
+00003161  PINCC26XX_getPinCount                                              
+00003171  PowerCC26XX_schedulerDisable                                       
+00003181  Power_enablePolicy                                                 
+00003191  SemaphoreP_Params_init                                             
+000031a1  SwiP_Params_init                                                   
+000031b1  TimerP_Params_init                                                 
+000031c1  QueueP_empty                                                       
+000031cf  QueueP_remove                                                      
+000031dd  cleanup                                                            
+000031eb  __TI_decompress_none                                               
+000031f9  ClockP_doTick                                                      
+00003205  ClockP_getSystemTickPeriod                                         
+00003211  NOROM_CPUcpsid                                                     
+0000321d  NOROM_CPUcpsie                                                     
+00003229  PowerCC26XX_schedulerRestore                                       
+00003235  Power_getConstraintMask                                            
+00003241  Power_getDependencyCount                                           
+0000324d  SwiP_getTrigger                                                    
+00003259  TimerP_getFreq                                                     
+00003265  PWM_setDuty                                                        
+0000326f  PWM_start                                                          
+00003279  PWM_stop                                                           
+00003283  GPTimerCC26XX_setLoadValue                                         
+0000328b  GPTimerCC26XX_setMatchValue                                        
+00003293  HwiP_restore                                                       
+0000329b  ClockP_stop                                                        
+000032a1  GPTimerCC26XX_getValue                                             
+000032a7  NOROM_CPUdelay                                                     
+000032ad  QueueP_init                                                        
+000032bd  ClockP_isActive                                                    
+000032c1  ClockP_setTimeout                                                  
+000032c5  HwiP_enable                                                        
+000032c5  NoRTOS_start                                                       
+000032c9  QueueP_head                                                        
+000032cd  QueueP_next                                                        
+000032d1  _system_pre_init                                                   
+000032d5  C$$EXIT                                                            
+000032d5  abort                                                              
+000032e7  __aeabi_idiv0                                                      
+000032e7  __aeabi_ldiv0                                                      
+000032e8  resourceDB                                                         
+0000333c  PWMTimerCC26XX_fxnTable                                            
+0000337c  PWM_defaultParams                                                  
+000033a8  PowerCC26X2_config                                                 
+000033cc  GPTimerCC26XX_config                                               
+000033d8  PWM_config                                                         
+000033e4  gptimerCC26XXHWAttrs                                               
+00003400  BoardGpioInitTable                                                 
+00003410  PINCC26XX_hwAttrs                                                  
+00003418  CONFIG_PWM_1_CONST                                                 
+00003419  PWM_count                                                          
+0000341a  CONFIG_GPTIMER_0_CONST                                             
+0000341b  GPTimer_count                                                      
+0000341c  pwmTimerCC26XXHWAttrs                                              
+00003420  __c_args__                                                         
 0000345c  __TI_Handler_Table_Base                                            
 00003468  __TI_Handler_Table_Limit                                           
 00003478  __TI_CINIT_Base                                                    

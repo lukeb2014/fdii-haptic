@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS
+CG_TOOL_ROOT := C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -145,14 +145,14 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=DeviceFamily_CC26X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.map" -i"D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source" -i"D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos" -i"D:/doc/EE421/code_haptic_band/fdii-haptic/Debug/syscfg" -i"D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs_linkInfo.xml" --rom_model -o "pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.out" $(ORDERED_OBJS)
+	"C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=DeviceFamily_CC26X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.map" -i"C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source" -i"C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/nortos" -i"C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs/Debug/syscfg" -i"C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs_linkInfo.xml" --rom_model -o "pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: Arm Hex Utility'
-	"D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/bin/armhex" --diag_wrap=off -o "pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/bin/armhex" --diag_wrap=off -o "pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
