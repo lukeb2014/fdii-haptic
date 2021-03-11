@@ -65,6 +65,14 @@ void *mainThread(void *arg0)
     informUserOfStartup();
 
     // everything else called by Riley + Melissa
+
+    int i = 0;
+    uint16_t d = 0;
+    for (i = 0; i < 100; i+=4) {
+        updateDutyCycle(i);
+        usleep(1e6);
+    }
+
     cleanup(&pwm1);
     return;
 }
