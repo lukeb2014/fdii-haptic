@@ -45,8 +45,8 @@ extern "C" {
 
 extern const PIN_Config BoardGpioInitTable[];
 
-/* LaunchPad LED Red, Parent Signal: CONFIG_GPTIMER_0 PWM Pin, (DIO6) */
-#define CONFIG_PIN_0                   0x00000006
+/* Parent Signal: CONFIG_GPTIMER_0 PWM Pin, (DIO23) */
+#define CONFIG_PIN_0                   0x00000017
 #define CONFIG_TI_DRIVERS_PIN_COUNT    1
 
 
@@ -54,7 +54,7 @@ extern const PIN_Config BoardGpioInitTable[];
  *  ======== PWM ========
  */
 
-/* DIO6, LaunchPad LED Red */
+/* DIO23 */
 extern const uint_least8_t              CONFIG_PWM_1_CONST;
 #define CONFIG_PWM_1                    0
 #define CONFIG_TI_DRIVERS_PWM_COUNT     1
@@ -73,10 +73,10 @@ extern const uint_least8_t                  CONFIG_TIMER_0_CONST;
  *  ======== GPTimer ========
  */
 
-extern const uint_least8_t                  CONFIG_GPTIMER_1_CONST;
-#define CONFIG_GPTIMER_1                    0
 extern const uint_least8_t                  CONFIG_GPTIMER_0_CONST;
-#define CONFIG_GPTIMER_0                    1
+#define CONFIG_GPTIMER_0                    0
+extern const uint_least8_t                  CONFIG_GPTIMER_1_CONST;
+#define CONFIG_GPTIMER_1                    1
 #define CONFIG_TI_DRIVERS_GPTIMER_COUNT     2
 
 

@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.2                     
 ******************************************************************************
->> Linked Thu Mar 11 11:07:06 2021
+>> Linked Thu Mar 11 11:13:44 2021
 
 OUTPUT FILE NAME:   <pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.out>
 ENTRY POINT SYMBOL: "resetISR"  address: 000035f5
@@ -479,8 +479,8 @@ address   name
 00002981  Board_shutDownExtFlash                                             
 000024c9  Board_wakeUpExtFlash                                               
 0000385d  C$$EXIT                                                            
-000039f5  CONFIG_GPTIMER_0_CONST                                             
-000039f4  CONFIG_GPTIMER_1_CONST                                             
+000039f4  CONFIG_GPTIMER_0_CONST                                             
+000039f5  CONFIG_GPTIMER_1_CONST                                             
 000039f0  CONFIG_PWM_1_CONST                                                 
 000039f2  CONFIG_TIMER_0_CONST                                               
 00003651  ClockP_Params_init                                                 
@@ -949,8 +949,8 @@ address   name
 000039f1  PWM_count                                                          
 000039f2  CONFIG_TIMER_0_CONST                                               
 000039f3  Timer_count                                                        
-000039f4  CONFIG_GPTIMER_1_CONST                                             
-000039f5  CONFIG_GPTIMER_0_CONST                                             
+000039f4  CONFIG_GPTIMER_0_CONST                                             
+000039f5  CONFIG_GPTIMER_1_CONST                                             
 000039f6  GPTimer_count                                                      
 000039f7  pwmTimerCC26XXHWAttrs                                              
 000039f9  timerCC26XXHWAttrs                                                 

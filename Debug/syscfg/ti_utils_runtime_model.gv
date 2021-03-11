@@ -33,9 +33,9 @@ digraph Model
     CONFIG_TIMER_0 -> CONFIG_GPTIMER_1
 
     // mod.$name=/ti/drivers/timer/GPTimerCC26XX
-    CONFIG_GPTIMER_1 -> ti_drivers_Power
-    CONFIG_GPTIMER_1 -> ti_drivers_Board
     CONFIG_GPTIMER_0 -> ti_drivers_Power
     CONFIG_GPTIMER_0 -> ti_drivers_Board
+    CONFIG_GPTIMER_1 -> ti_drivers_Power
+    CONFIG_GPTIMER_1 -> ti_drivers_Board
     CONFIG_GPTIMER_0 -> CONFIG_PIN_0
 }

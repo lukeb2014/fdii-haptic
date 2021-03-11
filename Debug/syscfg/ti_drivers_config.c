@@ -26,7 +26,7 @@
 #define CONFIG_PIN_COUNT 1
 
 const PIN_Config BoardGpioInitTable[CONFIG_PIN_COUNT + 1] = {
-    /* LaunchPad LED Red, Parent Signal: CONFIG_GPTIMER_0 PWM Pin, (DIO6) */
+    /* Parent Signal: CONFIG_GPTIMER_0 PWM Pin, (DIO23) */
     CONFIG_PIN_0 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
 
     PIN_TERMINATE
@@ -61,9 +61,8 @@ PWMTimerCC26XX_Object pwmTimerCC26XXObjects[CONFIG_PWM_COUNT];
  */
 const PWMTimerCC26XX_HwAttrs pwmTimerCC26XXHWAttrs[CONFIG_PWM_COUNT] = {
     /* CONFIG_PWM_1 */
-    /* LaunchPad LED Red */
     {
-        .pwmPin = IOID_6,
+        .pwmPin = IOID_23,
         .gpTimerUnit = CONFIG_GPTIMER_0
     },
 };
@@ -73,7 +72,6 @@ const PWMTimerCC26XX_HwAttrs pwmTimerCC26XXHWAttrs[CONFIG_PWM_COUNT] = {
  */
 const PWM_Config PWM_config[CONFIG_PWM_COUNT] = {
     /* CONFIG_PWM_1 */
-    /* LaunchPad LED Red */
     {
         .fxnTablePtr = &PWMTimerCC26XX_fxnTable,
         .object = &pwmTimerCC26XXObjects[CONFIG_PWM_1],
@@ -164,7 +162,7 @@ GPTimerCC26XX_Object gptimerCC26XXObjects[CONFIG_GPTIMER_COUNT];
  *  ======== gptimerCC26XXHWAttrs ========
  */
 const GPTimerCC26XX_HWAttrs gptimerCC26XXHWAttrs[CONFIG_GPTIMER_COUNT] = {
-    /* CONFIG_GPTIMER_1, used by CONFIG_TIMER_0 */
+    /* CONFIG_GPTIMER_0, used by CONFIG_PWM_1 */
     {
         .baseAddr = GPT1_BASE,
         .intNum      = INT_GPT1A,
@@ -172,8 +170,7 @@ const GPTimerCC26XX_HWAttrs gptimerCC26XXHWAttrs[CONFIG_GPTIMER_COUNT] = {
         .powerMngrId = PowerCC26XX_PERIPH_GPT1,
         .pinMux      = GPT_PIN_1A
     },
-    /* CONFIG_GPTIMER_0, used by CONFIG_PWM_1 */
-    /* LaunchPad LED Red */
+    /* CONFIG_GPTIMER_1, used by CONFIG_TIMER_0 */
     {
         .baseAddr = GPT0_BASE,
         .intNum      = INT_GPT0A,
@@ -187,23 +184,22 @@ const GPTimerCC26XX_HWAttrs gptimerCC26XXHWAttrs[CONFIG_GPTIMER_COUNT] = {
  *  ======== GPTimer_config ========
  */
 const GPTimerCC26XX_Config GPTimerCC26XX_config[CONFIG_GPTIMER_COUNT] = {
+    /* CONFIG_GPTIMER_0 */
+    {
+        .object    = &gptimerCC26XXObjects[CONFIG_GPTIMER_0],
+        .hwAttrs   = &gptimerCC26XXHWAttrs[CONFIG_GPTIMER_0],
+        .timerPart = GPT_A
+    },
     /* CONFIG_GPTIMER_1 */
     {
         .object    = &gptimerCC26XXObjects[CONFIG_GPTIMER_1],
         .hwAttrs   = &gptimerCC26XXHWAttrs[CONFIG_GPTIMER_1],
         .timerPart = GPT_A
     },
-    /* CONFIG_GPTIMER_0 */
-    /* LaunchPad LED Red */
-    {
-        .object    = &gptimerCC26XXObjects[CONFIG_GPTIMER_0],
-        .hwAttrs   = &gptimerCC26XXHWAttrs[CONFIG_GPTIMER_0],
-        .timerPart = GPT_A
-    },
 };
 
-const uint_least8_t CONFIG_GPTIMER_1_CONST = CONFIG_GPTIMER_1;
 const uint_least8_t CONFIG_GPTIMER_0_CONST = CONFIG_GPTIMER_0;
+const uint_least8_t CONFIG_GPTIMER_1_CONST = CONFIG_GPTIMER_1;
 const uint_least8_t GPTimer_count = CONFIG_GPTIMER_COUNT;
 
 #include <stdbool.h>
