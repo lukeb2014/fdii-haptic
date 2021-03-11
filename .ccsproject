@@ -13,6 +13,6 @@
 	<ignoreDefaultDeviceSettings value="true"/>
 	<ignoreDefaultCCSSettings value="true"/>
 	<templateProperties value="id=pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.projectspec.pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs,buildProfile=release,isHybrid=true"/>
-	<origin value="C:\ti\simplelink_cc13x2_26x2_sdk_4_40_04_04\examples\nortos\CC26X2R1_LAUNCHXL\drivers\pwmled2\ccs\pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs.projectspec"/>
+	<origin value="C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/fdii-haptic"/>
 	<filesToOpen value=""/>
 </projectOptions>

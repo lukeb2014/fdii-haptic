@@ -8,9 +8,11 @@
 /**
  * Import the modules used in this configuration.
  */
-const PWM  = scripting.addModule("/ti/drivers/PWM");
-const PWM1 = PWM.addInstance();
-const RTOS = scripting.addModule("/ti/drivers/RTOS");
+const PWM    = scripting.addModule("/ti/drivers/PWM");
+const PWM1   = PWM.addInstance();
+const RTOS   = scripting.addModule("/ti/drivers/RTOS");
+const Timer  = scripting.addModule("/ti/drivers/Timer", {}, false);
+const Timer1 = Timer.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
@@ -25,9 +27,13 @@ CCFG.ccfgTemplate.$name = "ti_devices_CCFGTemplate0";
 
 RTOS.name = "NoRTOS";
 
+Timer1.$name               = "CONFIG_TIMER_0";
+Timer1.timerInstance.$name = "CONFIG_GPTIMER_1";
+
 /**
  * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
  * re-solve from scratch.
  */
-PWM1.timerObject.timer.$suggestSolution = "GPTM1";
+PWM1.timerObject.timer.$suggestSolution     = "GPTM1";
+Timer1.timerInstance.timer.$suggestSolution = "GPTM0";

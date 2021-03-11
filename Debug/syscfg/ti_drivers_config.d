@@ -45,6 +45,9 @@ syscfg/ti_drivers_config.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source
 syscfg/ti_drivers_config.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/dpl/ClockP.h
 syscfg/ti_drivers_config.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/power/PowerCC26XX.h
 syscfg/ti_drivers_config.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Temperature.h
+syscfg/ti_drivers_config.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Timer.h
+syscfg/ti_drivers_config.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/timer/TimerCC26XX.h
+syscfg/ti_drivers_config.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/dpl/SemaphoreP.h
 syscfg/ti_drivers_config.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Board.h
 
 syscfg/ti_drivers_config.c: 
@@ -92,4 +95,7 @@ C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/power/PowerCC26X2.
 C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/dpl/ClockP.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/power/PowerCC26XX.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Temperature.h: 
+C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Timer.h: 
+C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/timer/TimerCC26XX.h: 
+C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/dpl/SemaphoreP.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Board.h: 

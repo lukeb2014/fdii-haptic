@@ -15,6 +15,7 @@ pwmled2.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/mach
 pwmled2.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_stdint.h
 pwmled2.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h
 pwmled2.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/PWM.h
+pwmled2.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Timer.h
 pwmled2.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs/Debug/syscfg/ti_drivers_config.h
 pwmled2.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/devices/DeviceFamily.h
 pwmled2.obj: C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/PIN.h
@@ -35,6 +36,7 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_types.h:
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_stdint.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/PWM.h: 
+C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Timer.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/examples/nortos/CC26X2R1_LAUNCHXL/drivers/pwmled2_CC26X2R1_LAUNCHXL_nortos_ccs/Debug/syscfg/ti_drivers_config.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/devices/DeviceFamily.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/PIN.h: 

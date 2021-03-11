@@ -39,6 +39,7 @@
 
 /* Driver Header files */
 #include <ti/drivers/PWM.h>
+#include <ti/drivers/Timer.h>
 
 /* Driver configuration */
 #include "ti_drivers_config.h"
@@ -46,10 +47,16 @@
 
 /* globals */
 PWM_Handle pwm1 = NULL;
+Timer_Handle g_timer0;
 
 /* function prototypes */
 void updateDutyCycle(uint32_t percent);
 void initializePWM(uint32_t frequency, PWM_Handle *pwm);
+Timer_Handle initializeTimer();
+void startTimer();
+void updateTimerFreq(uint8_t newFreq);
+void stopTimer();
+void timerISR();
 void informUserOfStartup();
 void cleanup(PWM_Handle *pwm1);
 void vibTime(uint8_t timeMs);
@@ -62,16 +69,19 @@ void vibFreq(uint8_t freqHz, uint8_t dutyCycle);
 void *mainThread(void *arg0)
 {
     initializePWM(1e3, &pwm1);
+    g_timer0 = initializeTimer(); // use g_timer0 as a global
+
     informUserOfStartup();
 
-    // everything else called by Riley + Melissa
+    // start timer
+    startTimer();
 
-    int i = 0;
-    uint16_t d = 0;
-    for (i = 0; i < 100; i+=4) {
-        updateDutyCycle(i);
-        usleep(1e6);
-    }
+    // methodology to update the frequency:
+    // 1) stop the timer
+    // 2) update the frequency
+    // 3) start the timer again
+    // this is contained in updateTimerFreq
+    sleep(1000);
 
     cleanup(&pwm1);
     return;
@@ -99,6 +109,60 @@ void initializePWM(uint32_t frequency, PWM_Handle *pwm) {
     PWM_start(*pwm);
 }
 
+// initializes the timer
+Timer_Handle initializeTimer(Timer_Handle *timer) {
+    Timer_Handle t_;
+    Timer_Params params;
+    Timer_init(); // must be first Timer API call
+    Timer_Params_init(&params);
+
+    params.periodUnits = Timer_PERIOD_HZ;
+    params.period = 10; // 1 Hz
+    params.timerMode = Timer_CONTINUOUS_CALLBACK;
+    params.timerCallback = &timerISR;
+
+    t_ = Timer_open(CONFIG_TIMER_0, &params);
+
+    if (t_ == NULL) {
+        // the timer failed to initialize
+        while (1);
+    }
+    return t_;
+}
+
+void startTimer() {
+    int32_t status = Timer_start(g_timer0); // have the timer continuously run
+
+    if (status == Timer_STATUS_ERROR) {
+        // the timer failed to start
+        while(1);
+    }
+}
+
+void stopTimer() {
+    Timer_stop(g_timer0);
+}
+
+void updateTimerFreq(uint8_t newFreq) {
+    // update the timer frequency
+    stopTimer();
+    Timer_setPeriod(g_timer0, Timer_PERIOD_HZ, newFreq);
+    startTimer();
+}
+
+// handles what needs to happen for each tick
+void timerISR() {
+    static uint8_t motorOn = 0;
+    if (motorOn) {
+        // turn on the PWM
+        updateDutyCycle(50);
+    } else {
+        // turn off the PWM
+        updateDutyCycle(0);
+    }
+    motorOn ^= 1;
+}
+
 void informUserOfStartup() {
     // perform a buzz to inform the user of startup
     int i = 0;
@@ -112,6 +176,7 @@ void informUserOfStartup() {
 
 void cleanup(PWM_Handle *pwm1) {
     PWM_stop(*pwm1);
+    stopTimer();
 }
 
 /* changes the duty cycle of the PWM */

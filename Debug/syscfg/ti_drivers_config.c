@@ -26,7 +26,7 @@
 #define CONFIG_PIN_COUNT 1
 
 const PIN_Config BoardGpioInitTable[CONFIG_PIN_COUNT + 1] = {
-    /* Parent Signal: CONFIG_GPTIMER_0 PWM Pin, (DIO23) */
+    /* LaunchPad LED Red, Parent Signal: CONFIG_GPTIMER_0 PWM Pin, (DIO6) */
     CONFIG_PIN_0 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
 
     PIN_TERMINATE
@@ -61,8 +61,9 @@ PWMTimerCC26XX_Object pwmTimerCC26XXObjects[CONFIG_PWM_COUNT];
  */
 const PWMTimerCC26XX_HwAttrs pwmTimerCC26XXHWAttrs[CONFIG_PWM_COUNT] = {
     /* CONFIG_PWM_1 */
+    /* LaunchPad LED Red */
     {
-        .pwmPin = IOID_23,
+        .pwmPin = IOID_6,
         .gpTimerUnit = CONFIG_GPTIMER_0
     },
 };
@@ -72,6 +73,7 @@ const PWMTimerCC26XX_HwAttrs pwmTimerCC26XXHWAttrs[CONFIG_PWM_COUNT] = {
  */
 const PWM_Config PWM_config[CONFIG_PWM_COUNT] = {
     /* CONFIG_PWM_1 */
+    /* LaunchPad LED Red */
     {
         .fxnTablePtr = &PWMTimerCC26XX_fxnTable,
         .object = &pwmTimerCC26XXObjects[CONFIG_PWM_1],
@@ -103,6 +105,46 @@ const PowerCC26X2_Config PowerCC26X2_config = {
 };
 
 /*
+ *  =============================== Timer ===============================
+ */
+
+#include <ti/drivers/Timer.h>
+#include <ti/drivers/timer/TimerCC26XX.h>
+
+#define CONFIG_TIMER_COUNT 1
+
+/*
+ *  ======== timerCC26XXObjects ========
+ */
+TimerCC26XX_Object timerCC26XXObjects[CONFIG_TIMER_COUNT];
+
+/*
+ *  ======== timerCC26XXHWAttrs ========
+ */
+const TimerCC26XX_HWAttrs timerCC26XXHWAttrs[CONFIG_TIMER_COUNT] = {
+    {
+        .gpTimerUnit = CONFIG_GPTIMER_1,
+        .subTimer    = TimerCC26XX_timer16A
+
+    },
+};
+
+/*
+ *  ======== Timer_config ========
+ */
+const Timer_Config Timer_config[CONFIG_TIMER_COUNT] = {
+    /* CONFIG_TIMER_0 */
+    {
+        .fxnTablePtr = &TimerCC26XX_fxnTable,
+        .object    = &timerCC26XXObjects[CONFIG_TIMER_0],
+        .hwAttrs   = &timerCC26XXHWAttrs[CONFIG_TIMER_0]
+    },
+};
+
+const uint_least8_t CONFIG_TIMER_0_CONST = CONFIG_TIMER_0;
+const uint_least8_t Timer_count = CONFIG_TIMER_COUNT;
+
+/*
  *  =============================== GPTimer ===============================
  */
 
@@ -111,7 +153,7 @@ const PowerCC26X2_Config PowerCC26X2_config = {
 #include <ti/devices/cc13x2_cc26x2/inc/hw_memmap.h>
 #include <ti/devices/cc13x2_cc26x2/inc/hw_ints.h>
 
-#define CONFIG_GPTIMER_COUNT 1
+#define CONFIG_GPTIMER_COUNT 2
 
 /*
  *  ======== gptimerCC26XXObjects ========
@@ -122,7 +164,7 @@ GPTimerCC26XX_Object gptimerCC26XXObjects[CONFIG_GPTIMER_COUNT];
  *  ======== gptimerCC26XXHWAttrs ========
  */
 const GPTimerCC26XX_HWAttrs gptimerCC26XXHWAttrs[CONFIG_GPTIMER_COUNT] = {
-    /* CONFIG_GPTIMER_0, used by CONFIG_PWM_1 */
+    /* CONFIG_GPTIMER_1, used by CONFIG_TIMER_0 */
     {
         .baseAddr = GPT1_BASE,
         .intNum      = INT_GPT1A,
@@ -130,13 +172,29 @@ const GPTimerCC26XX_HWAttrs gptimerCC26XXHWAttrs[CONFIG_GPTIMER_COUNT] = {
         .powerMngrId = PowerCC26XX_PERIPH_GPT1,
         .pinMux      = GPT_PIN_1A
     },
+    /* CONFIG_GPTIMER_0, used by CONFIG_PWM_1 */
+    /* LaunchPad LED Red */
+    {
+        .baseAddr = GPT0_BASE,
+        .intNum      = INT_GPT0A,
+        .intPriority = (~0),
+        .powerMngrId = PowerCC26XX_PERIPH_GPT0,
+        .pinMux      = GPT_PIN_0A
+    },
 };
 
 /*
  *  ======== GPTimer_config ========
  */
 const GPTimerCC26XX_Config GPTimerCC26XX_config[CONFIG_GPTIMER_COUNT] = {
+    /* CONFIG_GPTIMER_1 */
+    {
+        .object    = &gptimerCC26XXObjects[CONFIG_GPTIMER_1],
+        .hwAttrs   = &gptimerCC26XXHWAttrs[CONFIG_GPTIMER_1],
+        .timerPart = GPT_A
+    },
     /* CONFIG_GPTIMER_0 */
+    /* LaunchPad LED Red */
     {
         .object    = &gptimerCC26XXObjects[CONFIG_GPTIMER_0],
         .hwAttrs   = &gptimerCC26XXHWAttrs[CONFIG_GPTIMER_0],
@@ -144,6 +202,7 @@ const GPTimerCC26XX_Config GPTimerCC26XX_config[CONFIG_GPTIMER_COUNT] = {
     },
 };
 
+const uint_least8_t CONFIG_GPTIMER_1_CONST = CONFIG_GPTIMER_1;
 const uint_least8_t CONFIG_GPTIMER_0_CONST = CONFIG_GPTIMER_0;
 const uint_least8_t GPTimer_count = CONFIG_GPTIMER_COUNT;
 
