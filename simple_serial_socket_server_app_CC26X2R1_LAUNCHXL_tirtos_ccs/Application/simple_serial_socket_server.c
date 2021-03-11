@@ -465,7 +465,7 @@ static void SimpleStreamServer_incomingDataCB(uint16_t connHandle,
       }
       */
 
-      if(atoi((char*)uartCurrentMsg->buffer) == 2){
+      if(strncmp(((char*)uartCurrentMsg->buffer), "vibOn", 5)){
           PWM_setDuty(pwm1,2000);
       }
       else
