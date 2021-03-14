@@ -8,7 +8,7 @@
   <dataTransportClassName>undefined</dataTransportClassName>
   <controlTransportClassName>undefined</controlTransportClassName>
   <loggers-length>0</loggers-length>
-  <modMap-length>40</modMap-length>
+  <modMap-length>43</modMap-length>
   <modMap key="xdc.runtime.Assert">
     <id>1</id>
     <logger>null</logger>
@@ -164,48 +164,63 @@
     <logger>null</logger>
     <diagsMask>0000110000000000</diagsMask>
   </modMap>
-  <modMap key="ti.sysbios.family.arm.cc26xx.Timer">
+  <modMap key="ti.sysbios.family.arm.cc26xx.Seconds">
     <id>41</id>
     <logger>null</logger>
     <diagsMask>0000110000000000</diagsMask>
   </modMap>
-  <modMap key="ti.sysbios.family.arm.cc26xx.TimestampProvider">
+  <modMap key="ti.sysbios.family.arm.cc26xx.Timer">
     <id>42</id>
+    <logger>null</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sysbios.family.arm.cc26xx.TimestampProvider">
+    <id>43</id>
     <logger>null</logger>
     <diagsMask>0000100000000000</diagsMask>
   </modMap>
   <modMap key="ti.sysbios.hal.Hwi">
-    <id>43</id>
+    <id>44</id>
     <logger>null</logger>
     <diagsMask>0000110000000000</diagsMask>
   </modMap>
-  <modMap key="ti.sysbios.heaps.HeapMem">
+  <modMap key="ti.sysbios.hal.Seconds">
     <id>45</id>
     <logger>null</logger>
     <diagsMask>0000110000000000</diagsMask>
   </modMap>
+  <modMap key="ti.sysbios.heaps.HeapMem">
+    <id>48</id>
+    <logger>null</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
   <modMap key="ti.sysbios.heaps.HeapTrack">
-    <id>46</id>
-    <logger>null</logger>
-    <diagsMask>0000110000000000</diagsMask>
-  </modMap>
-  <modMap key="ti.sysbios.heaps.HeapCallback">
-    <id>47</id>
-    <logger>null</logger>
-    <diagsMask>0000110000000000</diagsMask>
-  </modMap>
-  <modMap key="ti.sysbios.gates.GateHwi">
     <id>49</id>
     <logger>null</logger>
     <diagsMask>0000110000000000</diagsMask>
   </modMap>
-  <modMap key="ti.sysbios.gates.GateMutexPri">
+  <modMap key="ti.sysbios.heaps.HeapCallback">
     <id>50</id>
     <logger>null</logger>
     <diagsMask>0000110000000000</diagsMask>
   </modMap>
+  <modMap key="ti.sysbios.gates.GateHwi">
+    <id>52</id>
+    <logger>null</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sysbios.gates.GateMutexPri">
+    <id>53</id>
+    <logger>null</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
   <modMap key="ti.sysbios.gates.GateMutex">
-    <id>51</id>
+    <id>54</id>
+    <logger>null</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sysbios.rts.ti.ReentSupport">
+    <id>55</id>
     <logger>null</logger>
     <diagsMask>0000110000000000</diagsMask>
   </modMap>

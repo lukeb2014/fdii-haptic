@@ -218,6 +218,13 @@ iCall/icall.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/IIn
 iCall/icall.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/heaps/package/package.defs.h
 iCall/icall.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Memory.h
 iCall/icall.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/IHeap.h
+iCall/icall.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/gates/GateMutex.h
+iCall/icall.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Types.h
+iCall/icall.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/IInstance.h
+iCall/icall.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Assert.h
+iCall/icall.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/IGateProvider.h
+iCall/icall.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/knl/Task.h
+iCall/icall.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/knl/Semaphore.h
 iCall/icall.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/ble5stack/osal/src/inc/osal.h
 iCall/icall.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/limits.h
 iCall/icall.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/ble5stack/osal/src/inc/comdef.h
@@ -510,6 +517,13 @@ D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/IInstance.h:
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/heaps/package/package.defs.h: 
 D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Memory.h: 
 D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/IHeap.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/gates/GateMutex.h: 
+D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Types.h: 
+D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/IInstance.h: 
+D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Assert.h: 
+D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/IGateProvider.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/knl/Task.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/knl/Semaphore.h: 
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/ble5stack/osal/src/inc/osal.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/limits.h: 
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/ble5stack/osal/src/inc/comdef.h: 

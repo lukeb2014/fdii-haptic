@@ -510,6 +510,46 @@ const TemperatureCC26X2_Config TemperatureCC26X2_config = {
 };
 
 /*
+ *  =============================== Timer ===============================
+ */
+
+#include <ti/drivers/Timer.h>
+#include <ti/drivers/timer/TimerCC26XX.h>
+
+#define CONFIG_TIMER_COUNT 1
+
+/*
+ *  ======== timerCC26XXObjects ========
+ */
+TimerCC26XX_Object timerCC26XXObjects[CONFIG_TIMER_COUNT];
+
+/*
+ *  ======== timerCC26XXHWAttrs ========
+ */
+const TimerCC26XX_HWAttrs timerCC26XXHWAttrs[CONFIG_TIMER_COUNT] = {
+    {
+        .gpTimerUnit = CONFIG_GPTIMER_1,
+        .subTimer    = TimerCC26XX_timer16A
+
+    },
+};
+
+/*
+ *  ======== Timer_config ========
+ */
+const Timer_Config Timer_config[CONFIG_TIMER_COUNT] = {
+    /* CONFIG_TIMER_0 */
+    {
+        .fxnTablePtr = &TimerCC26XX_fxnTable,
+        .object    = &timerCC26XXObjects[CONFIG_TIMER_0],
+        .hwAttrs   = &timerCC26XXHWAttrs[CONFIG_TIMER_0]
+    },
+};
+
+const uint_least8_t CONFIG_TIMER_0_CONST = CONFIG_TIMER_0;
+const uint_least8_t Timer_count = CONFIG_TIMER_COUNT;
+
+/*
  *  =============================== UART ===============================
  */
 
@@ -607,7 +647,7 @@ const uint_least8_t LED_count = CONFIG_LED_COUNT;
 #include <ti/devices/cc13x2_cc26x2/inc/hw_memmap.h>
 #include <ti/devices/cc13x2_cc26x2/inc/hw_ints.h>
 
-#define CONFIG_GPTIMER_COUNT 1
+#define CONFIG_GPTIMER_COUNT 2
 
 /*
  *  ======== gptimerCC26XXObjects ========
@@ -619,6 +659,14 @@ GPTimerCC26XX_Object gptimerCC26XXObjects[CONFIG_GPTIMER_COUNT];
  */
 const GPTimerCC26XX_HWAttrs gptimerCC26XXHWAttrs[CONFIG_GPTIMER_COUNT] = {
     /* CONFIG_GPTIMER_0, used by CONFIG_PWM_0 */
+    {
+        .baseAddr = GPT1_BASE,
+        .intNum      = INT_GPT1A,
+        .intPriority = (~0),
+        .powerMngrId = PowerCC26XX_PERIPH_GPT1,
+        .pinMux      = GPT_PIN_1A
+    },
+    /* CONFIG_GPTIMER_1, used by CONFIG_TIMER_0 */
     {
         .baseAddr = GPT0_BASE,
         .intNum      = INT_GPT0A,
@@ -638,9 +686,16 @@ const GPTimerCC26XX_Config GPTimerCC26XX_config[CONFIG_GPTIMER_COUNT] = {
         .hwAttrs   = &gptimerCC26XXHWAttrs[CONFIG_GPTIMER_0],
         .timerPart = GPT_A
     },
+    /* CONFIG_GPTIMER_1 */
+    {
+        .object    = &gptimerCC26XXObjects[CONFIG_GPTIMER_1],
+        .hwAttrs   = &gptimerCC26XXHWAttrs[CONFIG_GPTIMER_1],
+        .timerPart = GPT_A
+    },
 };
 
 const uint_least8_t CONFIG_GPTIMER_0_CONST = CONFIG_GPTIMER_0;
+const uint_least8_t CONFIG_GPTIMER_1_CONST = CONFIG_GPTIMER_1;
 const uint_least8_t GPTimer_count = CONFIG_GPTIMER_COUNT;
 
 #include <stdbool.h>
@@ -771,13 +826,13 @@ void Board_init(void)
     /* ==== /ti/drivers/Power initialization ==== */
     Power_init();
 
-    /* ==== /ti/devices/CCFGTemplate initialization ==== */
-
     /* ==== /ti/drivers/PIN initialization ==== */
     if (PIN_init(BoardGpioInitTable) != PIN_SUCCESS) {
         /* Error with PIN_init */
         while (1);
     }
+    /* ==== /ti/devices/CCFGTemplate initialization ==== */
+
     /* ==== /ti/drivers/RF initialization ==== */
 
 

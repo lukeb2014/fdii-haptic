@@ -14,6 +14,9 @@ extern const ti_sysbios_heaps_HeapCallback_Handle heap0;
 
 #define HEAPMGR_SIZE 0x0
 
+#include <ti/sysbios/gates/GateMutex.h>
+extern const ti_sysbios_gates_GateMutex_Handle tiposix_mqGate;
+
 extern int xdc_runtime_Startup__EXECFXN__C;
 
 extern int xdc_runtime_Startup__RESETFXN__C;

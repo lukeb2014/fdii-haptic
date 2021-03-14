@@ -107,6 +107,8 @@ syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source
 syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/TRNG.h
 syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/trng/TRNGCC26XX.h
 syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/temperature/TemperatureCC26X2.h
+syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Timer.h
+syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/timer/TimerCC26XX.h
 syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/uart/UARTCC26XX.h
 syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/utils/RingBuf.h
 syscfg/ti_drivers_config.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/devices/cc13x2_cc26x2/driverlib/uart.h
@@ -220,6 +222,8 @@ D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/devices/cc13x2_cc26x2/driv
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/TRNG.h: 
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/trng/TRNGCC26XX.h: 
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/temperature/TemperatureCC26X2.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Timer.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/timer/TimerCC26XX.h: 
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/uart/UARTCC26XX.h: 
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/utils/RingBuf.h: 
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/devices/cc13x2_cc26x2/driverlib/uart.h: 

@@ -164,6 +164,15 @@ extern const uint_least8_t              CONFIG_TRNG_0_CONST;
 
 
 /*
+ *  ======== Timer ========
+ */
+
+extern const uint_least8_t                  CONFIG_TIMER_0_CONST;
+#define CONFIG_TIMER_0                      0
+#define CONFIG_TI_DRIVERS_TIMER_COUNT       1
+
+
+/*
  *  ======== UART ========
  */
 
@@ -196,7 +205,9 @@ extern const uint_least8_t              CONFIG_LED_1_CONST;
 
 extern const uint_least8_t                  CONFIG_GPTIMER_0_CONST;
 #define CONFIG_GPTIMER_0                    0
-#define CONFIG_TI_DRIVERS_GPTIMER_COUNT     1
+extern const uint_least8_t                  CONFIG_GPTIMER_1_CONST;
+#define CONFIG_GPTIMER_1                    1
+#define CONFIG_TI_DRIVERS_GPTIMER_COUNT     2
 
 
 /*

@@ -33,6 +33,8 @@ const RF          = scripting.addModule("/ti/drivers/RF");
 const RTOS        = scripting.addModule("/ti/drivers/RTOS");
 const TRNG        = scripting.addModule("/ti/drivers/TRNG");
 const TRNG1       = TRNG.addInstance();
+const Timer       = scripting.addModule("/ti/drivers/Timer", {}, false);
+const Timer1      = Timer.addInstance();
 const LED         = scripting.addModule("/ti/drivers/apps/LED", {}, false);
 const LED1        = LED.addInstance();
 const LED2        = LED.addInstance();
@@ -126,10 +128,15 @@ NVS1.internalFlash.regionSize = 0x4000;
 
 PWM1.$name                            = "CONFIG_PWM_0";
 PWM1.timerObject.$name                = "CONFIG_GPTIMER_0";
+PWM1.timerObject.timer.$assign        = "GPTM1";
 PWM1.timerObject.timer.pwmPin.$assign = "boosterpack.2";
 PWM1.timerObject.pwmPinInstance.$name = "CONFIG_PIN_2";
 
 TRNG1.$name = "CONFIG_TRNG_0";
+
+Timer1.$name                       = "CONFIG_TIMER_0";
+Timer1.timerInstance.$name         = "CONFIG_GPTIMER_1";
+Timer1.timerInstance.timer.$assign = "GPTM0";
 
 LED1.$name                     = "CONFIG_LED_0";
 LED1.$hardware                 = system.deviceData.board.components.LED_RED;
@@ -149,6 +156,5 @@ Display1.uart.uart.txPin.$suggestSolution = "boosterpack.4";
 Display1.uart.uart.rxPin.$suggestSolution = "boosterpack.3";
 GPIO1.gpioPin.$suggestSolution            = "boosterpack.13";
 GPIO2.gpioPin.$suggestSolution            = "boosterpack.12";
-PWM1.timerObject.timer.$suggestSolution   = "GPTM0";
 LED1.gpioPin.gpioPin.$suggestSolution     = "boosterpack.39";
 LED2.gpioPin.gpioPin.$suggestSolution     = "boosterpack.40";

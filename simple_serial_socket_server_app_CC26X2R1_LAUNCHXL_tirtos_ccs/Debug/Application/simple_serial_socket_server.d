@@ -6,20 +6,33 @@ Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/linkage.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/cdefs.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdlib.h
-Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/knl/Task.h
-Application/simple_serial_socket_server.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/std.h
-Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdarg.h
-Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_types.h
-Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/_types.h
+Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/posix/ccs/unistd.h
+Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/posix/ccs/sys/types.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stddef.h
-Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/arm/elf/std.h
-Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/arm/elf/M4F.h
-Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/std.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdint.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/_stdint40.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/stdint.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_types.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/_types.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/_stdint.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_stdint.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/../include/sys/types.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/endian.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/select.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_sigset.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_timeval.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/timespec.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_timespec.h
+Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/posix/ccs/sys/_internal.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/../include/time.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/abi_prefix.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/xlocale/_time.h
+Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/knl/Task.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/std.h
+Application/simple_serial_socket_server.obj: D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdarg.h
+Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/arm/elf/std.h
+Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/arm/elf/M4F.h
+Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/std.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/xdc.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Types.h
 Application/simple_serial_socket_server.obj: D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Types__prologue.h
@@ -272,6 +285,7 @@ Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_
 Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/PWM.h
 Application/simple_serial_socket_server.obj: ../Application/simple_serial_socket_server.h
 Application/simple_serial_socket_server.obj: D:/ti/ble_examples-simplelink_cc13x2_26x2_sdk-4.10/source/ti/ble5stack/profiles/simple_serial_stream/simple_stream_profile_server.h
+Application/simple_serial_socket_server.obj: D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Timer.h
 
 ../Application/simple_serial_socket_server.c: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/string.h: 
@@ -279,20 +293,33 @@ D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/_ti_config.h:
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/linkage.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/cdefs.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdlib.h: 
-D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/knl/Task.h: 
-D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/std.h: 
-D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdarg.h: 
-D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_types.h: 
-D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/_types.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/posix/ccs/unistd.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/posix/ccs/sys/types.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stddef.h: 
-D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/arm/elf/std.h: 
-D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/arm/elf/M4F.h: 
-D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/std.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdint.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/_stdint40.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/stdint.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_types.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/_types.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/_stdint.h: 
 D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_stdint.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/../include/sys/types.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/endian.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/select.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_sigset.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_timeval.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/timespec.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_timespec.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/posix/ccs/sys/_internal.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/../include/time.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/abi_prefix.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/xlocale/_time.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/sysbios/knl/Task.h: 
+D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/std.h: 
+D:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdarg.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/arm/elf/std.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/arm/elf/M4F.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/kernel/tirtos/packages/ti/targets/std.h: 
 D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/xdc.h: 
 D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Types.h: 
 D:/ti/ccs1020/xdctools_3_62_00_08_core/packages/xdc/runtime/Types__prologue.h: 
@@ -545,3 +572,4 @@ D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/GPIO.h:
 D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/PWM.h: 
 ../Application/simple_serial_socket_server.h: 
 D:/ti/ble_examples-simplelink_cc13x2_26x2_sdk-4.10/source/ti/ble5stack/profiles/simple_serial_stream/simple_stream_profile_server.h: 
+D:/ti/simplelink_cc13x2_26x2_sdk_4_40_04_04/source/ti/drivers/Timer.h: 

@@ -48,6 +48,8 @@
  */
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <stddef.h>
 
 #include <ti/sysbios/knl/Task.h>
 #include <ti/sysbios/knl/Clock.h>
@@ -77,6 +79,7 @@
 
 /* Driver Header files */
 #include <ti/drivers/PWM.h>
+#include <ti/drivers/Timer.h>
 
 /* Driver configuration */
 #include "ti_drivers_config.h"
@@ -132,8 +135,9 @@
  * TYPEDEFS
  */
 
-// Auto connect availble groups
+// Auto connect available groups
 static PWM_Handle pwm1 = NULL;
+static Timer_Handle g_timer0;
 
 // App event passed from profiles.
 typedef struct
@@ -250,6 +254,14 @@ static uint8_t SimpleSerialSocketServer_enqueueMsg(uint8_t event, uint8_t state,
 static void SimpleSerialSocketServer_connEvtCB(Gap_ConnEventRpt_t *pReport);
 static void SimpleSerialSocketServer_advCB(uint32_t event, void *pBuf, uintptr_t arg);
 
+static Timer_Handle initializeTimer();
+static void startTimer();
+static void updateTimerFreq(uint8_t newFreq);
+static void stopTimer();
+static void timerISR();
+
+void updateDutyCycle(uint32_t percent);
+void vibTime(uint8_t timeMs);
 
 /*********************************************************************
  * EXTERN FUNCTIONS
@@ -439,6 +451,8 @@ static void SimpleStreamServer_incomingDataCB(uint16_t connHandle,
   {
     newMsg->len = len;
     memcpy(newMsg->buffer, data, len);
+    char* msg;
+    char* comm;
 
     List_put(&uartWriteList, (List_Elem *) newMsg);
 
@@ -449,30 +463,22 @@ static void SimpleStreamServer_incomingDataCB(uint16_t connHandle,
       uartCurrentMsg = (uartMsg_t *) List_get(&uartWriteList);
 
       UART_write(uartHandle, uartCurrentMsg->buffer, uartCurrentMsg->len);
-/* start of pwm code
-      if strcmp((char[])uartCurrentMsg->buffer, 'vibT', 4)
+      /* vibration control */
+      comm = (char*)uartCurrentMsg->buffer;
+      if (strncmp(comm, "vibT", 4) == 0)
       {
-          msg = uartCurrentMsg->buffer + 4;
-          time_len = (uint8_t)atoi((char[])msg);
+          uint8_t time_len;
+          msg = comm + 4;
+          time_len = (uint8_t)atoi(msg);
+          vibTime(time_len);
       }
-      else if strcmp((char[])uartCurrentMsg->buffer, 'vibF', 4)
+      else if (strncmp(comm, "vibF", 4) == 0)
       {
-
-          msg = uartCurrentMsg->buffer + 4;
-          freq = atoi(strncpy(temp, (char[])msg),3);
-          msg = msg + 16;
-          duty = atoi((char[]) memcpy(temp, (char[])msg), 3);
+          uint8_t freq;
+          msg = comm + 4;
+          freq = (uint8_t)atoi(msg)*2;
+          updateTimerFreq(freq);
       }
-      */
-
-      if(atoi((char*)uartCurrentMsg->buffer) == 2){
-          PWM_setDuty(pwm1,2000);
-      }
-      else
-          PWM_setDuty(pwm1,0);
- /**********************************************************************************************
-  * Motor goes here in switch statement
-  ****************************************************************************************************/
     }
   }
 }
@@ -498,27 +504,10 @@ void SimpleSerialSocketServer_createTask(void)
 
   Task_construct(&ssssTask, SimpleSerialSocketServer_taskFxn, &taskParams, NULL);
 
-  /* Period and duty in microseconds */
-  uint16_t   pwmPeriod = 3000;
+  /* Initialize timer */
+  g_timer0 = initializeTimer();
 
-  PWM_Params params;
-
-  /* Call driver init functions. */
-  PWM_init();
-
-  PWM_Params_init(&params);
-  params.dutyUnits = PWM_DUTY_US;
-  params.dutyValue = 0;
-  params.periodUnits = PWM_PERIOD_US;
-  params.periodValue = pwmPeriod;
-
-  pwm1 = PWM_open(CONFIG_PWM_0, &params);
-  if (pwm1 == NULL) {
-      /* CONFIG_PWM_0 did not open */
-      while (1);
-  }
-
-  PWM_start(pwm1);
+  SimpleSerialSocketServer_InitiatePWM();
 
 }
 
@@ -536,21 +525,22 @@ void SimpleSerialSocketServer_createTask(void)
  */
 void SimpleSerialSocketServer_InitiatePWM(void){
 
-    /* Period and duty in microseconds */
-    uint16_t   pwmPeriod = 3000;
+    /* Period and duty in hertz */
+    uint16_t   pwmFreq = 1000;
 
-    PWM_Params params;
+    PWM_Params pwmParams;
 
     /* Call driver init functions. */
     PWM_init();
 
-    PWM_Params_init(&params);
-    params.dutyUnits = PWM_DUTY_US;
-    params.dutyValue = 0;
-    params.periodUnits = PWM_PERIOD_US;
-    params.periodValue = pwmPeriod;
+    PWM_Params_init(&pwmParams);
+    pwmParams.idleLevel = PWM_IDLE_LOW;      // Output low when PWM is not running
+    pwmParams.periodUnits = PWM_PERIOD_HZ;   // Period is in Hz
+    pwmParams.periodValue = pwmFreq;             // 1e3 Hz, empirically a minimum of 3 Hz is possible
+    pwmParams.dutyUnits = PWM_DUTY_FRACTION; // Duty is in fractional percentage
+    pwmParams.dutyValue = 0;                 // 0% initial duty cycle
 
-    pwm1 = PWM_open(CONFIG_PWM_0, &params);
+    pwm1 = PWM_open(CONFIG_PWM_0, &pwmParams);
     if (pwm1 == NULL) {
         /* CONFIG_PWM_0 did not open */
         while (1);
@@ -1249,5 +1239,87 @@ static uint8_t SimpleSerialSocketServer_enqueueMsg(uint8_t event, uint8_t state,
 
   return FALSE;
 }
+
+/**********************************************************************************************
+ * Timer Functions
+ **********************************************************************************************/
+// initializes the timer
+static Timer_Handle initializeTimer()
+{
+    Timer_Handle t_;
+    Timer_Params params;
+    Timer_init(); // must be first Timer API call
+    Timer_Params_init(&params);
+
+    params.periodUnits = Timer_PERIOD_HZ;
+    params.period = 10; // 1 Hz
+    params.timerMode = Timer_CONTINUOUS_CALLBACK;
+    params.timerCallback = &timerISR;
+
+    t_ = Timer_open(CONFIG_TIMER_0, &params);
+
+    if (t_ == NULL) {
+        // the timer failed to initialize
+        while (1);
+    }
+    return t_;
+}
+
+static void startTimer()
+{
+    int32_t status = Timer_start(g_timer0); // have the timer continuously run
+
+    if (status == Timer_STATUS_ERROR) {
+        // the timer failed to start
+        while(1);
+    }
+}
+
+static void stopTimer()
+{
+    Timer_stop(g_timer0);
+}
+
+
+static void updateTimerFreq(uint8_t newFreq) {
+    // update the timer frequency
+    PWM_stop(pwm1);
+    stopTimer();
+//    usleep(10000);
+    Timer_setPeriod(g_timer0, Timer_PERIOD_HZ, newFreq);
+//    usleep(10000);
+    startTimer();
+    PWM_start(pwm1);
+}
+
+// handles what needs to happen for each tick
+static void timerISR()
+{
+    static uint8_t motorOn = 0; // flag
+    if (motorOn) {
+        // turn on the PWM
+        updateDutyCycle(50);
+    } else {
+        // turn off the PWM
+        updateDutyCycle(0);
+    }
+    motorOn ^= 1;
+}
+
+/* changes the duty cycle of the PWM */
+void updateDutyCycle(uint32_t percent)
+{
+    PWM_setDuty(pwm1, (uint32_t) (((uint64_t) PWM_DUTY_FRACTION_MAX * percent) / 100)); //
+}
+
+/* vibrates for a length of time in ms*/
+void vibTime(uint8_t timeMs)
+{
+    stopTimer();
+    updateDutyCycle(50);   // always on
+    usleep(timeMs*1000);    // let it buzz for timeMS
+    updateDutyCycle(0);     // off
+}
+
 /*********************************************************************
 *********************************************************************/
