@@ -1285,9 +1285,7 @@ static void updateTimerFreq(uint8_t newFreq) {
     // update the timer frequency
     PWM_stop(pwm1);
     stopTimer();
-//    usleep(10000);
     Timer_setPeriod(g_timer0, Timer_PERIOD_HZ, newFreq);
-//    usleep(10000);
     startTimer();
     PWM_start(pwm1);
 }

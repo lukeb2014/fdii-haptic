@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.4                     
 ******************************************************************************
->> Linked Sun Mar 14 16:12:20 2021
+>> Linked Sun Mar 14 16:28:27 2021
 
 OUTPUT FILE NAME:   <simple_serial_socket_server_app_CC26X2R1_LAUNCHXL_tirtos_ccs.out>
 ENTRY POINT SYMBOL: "ResetISR"  address: 00012671
@@ -1786,7 +1786,7 @@ MODULE SUMMARY
        Total:                                        260     504       18208  
                                                                               
     C:\Users\User\AppData\Local\Temp\
-       {7147EF88-6934-4C15-B41C-B8D7179EE9A3}        0       0         5      
+       {A2BAE208-67FF-47B8-B702-A74F4A6A006D}        0       0         5      
     +--+---------------------------------------------+-------+---------+---------+
        Total:                                        0       0         5      
                                                                               
