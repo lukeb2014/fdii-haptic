@@ -1,0 +1,2 @@
+package.xs
+package/cfg/simple_serial_socket_server_app_pem4f.cfg

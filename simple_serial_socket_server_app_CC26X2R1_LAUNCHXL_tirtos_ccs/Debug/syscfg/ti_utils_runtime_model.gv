@@ -1,0 +1,144 @@
+digraph Model
+{
+    graph[rankdir=LR]
+
+    // mod.$name=/ti/ble5stack/ble
+    ti_ble5stack_ble -> ti_common_multi_stack_validate
+    ti_ble5stack_ble -> RF_BLE_Setting
+    ti_ble5stack_ble -> ti_ble5stack_general_ble_conn_update_params0
+    ti_ble5stack_ble -> ti_ble5stack_broadcaster_advertisement_set0
+    ti_ble5stack_ble -> ti_ble5stack_broadcaster_advertisement_set1
+
+    // mod.$name=/ti/ble5stack/broadcaster/advertisement_data
+
+    // mod.$name=/ti/ble5stack/broadcaster/advertisement_params
+
+    // mod.$name=/ti/ble5stack/broadcaster/advertisement_set
+    ti_ble5stack_broadcaster_advertisement_set0 -> ti_ble5stack_broadcaster_advertisement_params0
+    ti_ble5stack_broadcaster_advertisement_set0 -> ti_ble5stack_broadcaster_advertisement_data0
+    ti_ble5stack_broadcaster_advertisement_set0 -> ti_ble5stack_broadcaster_advertisement_data1
+    ti_ble5stack_broadcaster_advertisement_set1 -> ti_ble5stack_broadcaster_advertisement_params1
+    ti_ble5stack_broadcaster_advertisement_set1 -> ti_ble5stack_broadcaster_advertisement_data2
+    ti_ble5stack_broadcaster_advertisement_set1 -> ti_ble5stack_broadcaster_advertisement_data3
+
+    // mod.$name=/ti/ble5stack/general/ble_conn_update_params
+
+    // mod.$name=/ti/common/multi_stack_validate
+
+    // mod.$name=/ti/devices/CCFG
+    ti_devices_CCFG -> ti_devices_CCFGTemplate0
+
+    // mod.$name=/ti/devices/CCFGTemplate
+
+    // mod.$name=/ti/devices/DriverLib
+
+    // mod.$name=/ti/devices/radioconfig/code_export_param
+
+    // mod.$name=/ti/devices/radioconfig/rfdesign
+
+    // mod.$name=/ti/devices/radioconfig/settings/ble
+    RF_BLE_Setting -> ti_drivers_RF
+    RF_BLE_Setting -> ti_devices_radioconfig_rfdesign
+    RF_BLE_Setting -> ti_devices_radioconfig_code_export_param0
+
+    // mod.$name=/ti/display/Display
+    CONFIG_Display_0 -> ti_drivers_Board
+    CONFIG_Display_0 -> Board_UART0
+
+    // mod.$name=/ti/drivers/AESCCM
+    CONFIG_AESCCM0 -> ti_drivers_DMA
+    CONFIG_AESCCM0 -> ti_drivers_Power
+    CONFIG_AESCCM0 -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/AESCTR
+    CONFIG_AESCTR_0 -> ti_drivers_DMA
+    CONFIG_AESCTR_0 -> ti_drivers_Power
+    CONFIG_AESCTR_0 -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/AESCTRDRBG
+    CONFIG_AESCTRDRBG_0 -> ti_drivers_Power
+    CONFIG_AESCTRDRBG_0 -> ti_drivers_Board
+    CONFIG_AESCTRDRBG_0 -> CONFIG_AESCTR_0
+
+    // mod.$name=/ti/drivers/AESECB
+    CONFIG_AESECB0 -> ti_drivers_DMA
+    CONFIG_AESECB0 -> ti_drivers_Power
+    CONFIG_AESECB0 -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/Board
+    ti_drivers_Board -> ti_devices_DriverLib
+
+    // mod.$name=/ti/drivers/DMA
+    ti_drivers_DMA -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/ECDH
+    CONFIG_ECDH0 -> ti_drivers_Power
+    CONFIG_ECDH0 -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/GPIO
+    ti_drivers_GPIO -> ti_drivers_Power
+    ti_drivers_GPIO -> ti_drivers_Board
+    CONFIG_GPIO_BTN1 -> CONFIG_PIN_BTN1
+    CONFIG_GPIO_BTN2 -> CONFIG_PIN_BTN2
+    CONFIG_LED_0_GPIO -> CONFIG_PIN_0
+    CONFIG_LED_1_GPIO -> CONFIG_PIN_1
+    CONFIG_LED_2_GPIO -> CONFIG_PIN_3
+
+    // mod.$name=/ti/drivers/NVS
+    CONFIG_NVSINTERNAL -> ti_drivers_Board
+    CONFIG_NVSINTERNAL -> ti_drivers_nvs_NVSCC26XX0
+
+    // mod.$name=/ti/drivers/PIN
+    ti_drivers_PIN -> ti_drivers_Power
+    ti_drivers_PIN -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/PWM
+    CONFIG_PWM_0 -> ti_drivers_Power
+    CONFIG_PWM_0 -> ti_drivers_Board
+    CONFIG_PWM_0 -> CONFIG_GPTIMER_0
+
+    // mod.$name=/ti/drivers/Power
+    ti_drivers_Power -> ti_devices_CCFG
+    ti_drivers_Power -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/RF
+    ti_drivers_RF -> ti_drivers_Temperature
+    ti_drivers_RF -> ti_drivers_Power
+    ti_drivers_RF -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/RTOS
+
+    // mod.$name=/ti/drivers/TRNG
+    CONFIG_TRNG_0 -> ti_drivers_Power
+    CONFIG_TRNG_0 -> ti_drivers_Board
+
+    // mod.$name=/ti/drivers/Temperature
+
+    // mod.$name=/ti/drivers/Timer
+    CONFIG_TIMER_0 -> ti_drivers_Power
+    CONFIG_TIMER_0 -> ti_drivers_Board
+    CONFIG_TIMER_0 -> CONFIG_GPTIMER_1
+
+    // mod.$name=/ti/drivers/UART
+    Board_UART0 -> ti_drivers_Power
+    Board_UART0 -> ti_drivers_Board
+    Board_UART0 -> CONFIG_PIN_UART_TX
+    Board_UART0 -> CONFIG_PIN_UART_RX
+
+    // mod.$name=/ti/drivers/apps/LED
+    CONFIG_LED_0 -> ti_drivers_Board
+    CONFIG_LED_1 -> ti_drivers_Board
+    CONFIG_LED_2 -> ti_drivers_Board
+    CONFIG_LED_0 -> CONFIG_LED_0_GPIO
+    CONFIG_LED_1 -> CONFIG_LED_1_GPIO
+    CONFIG_LED_2 -> CONFIG_LED_2_GPIO
+
+    // mod.$name=/ti/drivers/nvs/NVSCC26XX
+
+    // mod.$name=/ti/drivers/timer/GPTimerCC26XX
+    CONFIG_GPTIMER_0 -> ti_drivers_Power
+    CONFIG_GPTIMER_0 -> ti_drivers_Board
+    CONFIG_GPTIMER_1 -> ti_drivers_Power
+    CONFIG_GPTIMER_1 -> ti_drivers_Board
+    CONFIG_GPTIMER_0 -> CONFIG_PIN_2
+}
