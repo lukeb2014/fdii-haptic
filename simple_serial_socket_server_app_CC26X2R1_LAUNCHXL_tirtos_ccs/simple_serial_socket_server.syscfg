@@ -38,15 +38,16 @@ const Timer1      = Timer.addInstance();
 const LED         = scripting.addModule("/ti/drivers/apps/LED", {}, false);
 const LED1        = LED.addInstance();
 const LED2        = LED.addInstance();
+const LED3        = LED.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
  */
 ble.lockProject                                           = true;
 ble.maxConnNum                                            = 1;
-ble.deviceName                                            = "SimpleSerialSocket";
 ble.bondMITMProtection                                    = false;
 ble.bonding                                               = false;
+ble.deviceName                                            = "Haptic Band";
 ble.radioConfig.codeExportConfig.$name                    = "ti_devices_radioconfig_code_export_param0";
 ble.connUpdateParamsPeripheral.$name                      = "ti_ble5stack_general_ble_conn_update_params0";
 ble.advSet1.$name                                         = "ti_ble5stack_broadcaster_advertisement_set0";
@@ -66,7 +67,7 @@ ble.advSet1.scanRes1.GAP_ADTYPE_LOCAL_NAME_COMPLETE       = true;
 ble.advSet1.scanRes1.GAP_ADTYPE_SLAVE_CONN_INTERVAL_RANGE = true;
 ble.advSet1.scanRes1.GAP_ADTYPE_POWER_LEVEL               = true;
 ble.advSet1.scanRes1.maxConnInterval                      = 1000;
-ble.advSet1.scanRes1.completeLocalName                    = "SimpleSerialSocket";
+ble.advSet1.scanRes1.completeLocalName                    = "Haptic Band";
 ble.advSet2.$name                                         = "ti_ble5stack_broadcaster_advertisement_set1";
 ble.advSet2.advParam2.$name                               = "ti_ble5stack_broadcaster_advertisement_params1";
 ble.advSet2.advParam2.advType                             = "extended";
@@ -85,7 +86,7 @@ ble.advSet2.scanRes2.GAP_ADTYPE_LOCAL_NAME_COMPLETE       = true;
 ble.advSet2.scanRes2.GAP_ADTYPE_SLAVE_CONN_INTERVAL_RANGE = true;
 ble.advSet2.scanRes2.GAP_ADTYPE_POWER_LEVEL               = true;
 ble.advSet2.scanRes2.maxConnInterval                      = 1000;
-ble.advSet2.scanRes2.completeLocalName                    = "SimpleSerialSocket";
+ble.advSet2.scanRes2.completeLocalName                    = "Haptic Band";
 
 CCFG.enableBootloader         = true;
 CCFG.enableBootloaderBackdoor = true;
@@ -139,12 +140,18 @@ Timer1.timerInstance.$name         = "CONFIG_GPTIMER_1";
 Timer1.timerInstance.timer.$assign = "GPTM0";
 
 LED1.$name                     = "CONFIG_LED_0";
-LED1.$hardware                 = system.deviceData.board.components.LED_RED;
+LED1.gpioPin.gpioPin.$assign   = "boosterpack.40";
 LED1.gpioPin.pinInstance.$name = "CONFIG_PIN_0";
 
-LED2.$name                     = "CONFIG_LED_1";
-LED2.$hardware                 = system.deviceData.board.components.LED_GREEN;
-LED2.gpioPin.pinInstance.$name = "CONFIG_PIN_1";
+LED2.$name                      = "CONFIG_LED_1";
+LED2.gpioPin.initialOutputState = "High";
+LED2.gpioPin.gpioPin.$assign    = "boosterpack.39";
+LED2.gpioPin.pinInstance.$name  = "CONFIG_PIN_1";
+
+LED3.$name                      = "CONFIG_LED_2";
+LED3.gpioPin.initialOutputState = "High";
+LED3.gpioPin.gpioPin.$assign    = "boosterpack.10";
+LED3.gpioPin.pinInstance.$name  = "CONFIG_PIN_3";
 
 /**
  * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
@@ -156,5 +163,3 @@ Display1.uart.uart.txPin.$suggestSolution = "boosterpack.4";
 Display1.uart.uart.rxPin.$suggestSolution = "boosterpack.3";
 GPIO1.gpioPin.$suggestSolution            = "boosterpack.13";
 GPIO2.gpioPin.$suggestSolution            = "boosterpack.12";
-LED1.gpioPin.gpioPin.$suggestSolution     = "boosterpack.39";
-LED2.gpioPin.gpioPin.$suggestSolution     = "boosterpack.40";

@@ -16,7 +16,7 @@
  */
 
 // Device Name
-uint8_t attDeviceName[GAP_DEVICE_NAME_LEN]= "SimpleSerialSocket";
+uint8_t attDeviceName[GAP_DEVICE_NAME_LEN]= "Haptic Band";
 
 //Random Address
 uint8_t * pRandomAddress = NULL;
@@ -133,26 +133,19 @@ uint8_t advData1[] =
 // Scan Response Data
 uint8_t scanResData1[] =
 {
-  0x13,
+  0x0c,
   GAP_ADTYPE_LOCAL_NAME_COMPLETE,
-  'S',
-  'i',
-  'm',
-  'p',
-  'l',
-  'e',
-  'S',
-  'e',
-  'r',
-  'i',
+  'H',
   'a',
-  'l',
-  'S',
-  'o',
-  'c',
-  'k',
-  'e',
+  'p',
   't',
+  'i',
+  'c',
+  ' ',
+  'B',
+  'a',
+  'n',
+  'd',
 
   0x02,
   GAP_ADTYPE_POWER_LEVEL,
@@ -228,26 +221,19 @@ uint8_t advData2[] =
 // Scan Response Data
 uint8_t scanResData2[] =
 {
-  0x13,
+  0x0c,
   GAP_ADTYPE_LOCAL_NAME_COMPLETE,
-  'S',
-  'i',
-  'm',
-  'p',
-  'l',
-  'e',
-  'S',
-  'e',
-  'r',
-  'i',
+  'H',
   'a',
-  'l',
-  'S',
-  'o',
-  'c',
-  'k',
-  'e',
+  'p',
   't',
+  'i',
+  'c',
+  ' ',
+  'B',
+  'a',
+  'n',
+  'd',
 
   0x02,
   GAP_ADTYPE_POWER_LEVEL,

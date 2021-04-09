@@ -178,7 +178,7 @@ typedef struct
 
 // Display Interface
 Display_Handle dispHandle = NULL;
-LED_Handle ledHandle[2];
+LED_Handle ledHandle[3];
 /*********************************************************************
  * LOCAL VARIABLES
  */
@@ -196,6 +196,8 @@ static ICall_SyncHandle syncEvent;
 // Queue object used for app messages
 static Queue_Struct appMsg;
 static Queue_Handle appMsgQueue;
+
+
 
 // Task configuration
 Task_Struct ssssTask;
@@ -224,6 +226,8 @@ static uint8_t uartReadBuffer[UART_MAX_READ_SIZE] = {0};
 static List_List  uartWriteList;
 static uartMsg_t* uartCurrentMsg;
 static uint8_t    uartWriteActive = 0;
+
+static uint32_t pwmDuty;
 
 /*********************************************************************
  * LOCAL FUNCTIONS
@@ -262,6 +266,7 @@ static void timerISR();
 
 void updateDutyCycle(uint32_t percent);
 void vibTime(uint8_t timeMs);
+void vibError();
 
 /*********************************************************************
  * EXTERN FUNCTIONS
@@ -465,19 +470,37 @@ static void SimpleStreamServer_incomingDataCB(uint16_t connHandle,
       UART_write(uartHandle, uartCurrentMsg->buffer, uartCurrentMsg->len);
       /* vibration control */
       comm = (char*)uartCurrentMsg->buffer;
-      if (strncmp(comm, "vibT", 4) == 0)
+      if (strncmp(comm, "VIBT", 4) == 0)
       {
           uint8_t time_len;
           msg = comm + 4;
           time_len = (uint8_t)atoi(msg);
           vibTime(time_len);
       }
-      else if (strncmp(comm, "vibF", 4) == 0)
+      else if (strncmp(comm, "VIBF", 4) == 0)
       {
           uint8_t freq;
           msg = comm + 4;
           freq = (uint8_t)atoi(msg)*2;
           updateTimerFreq(freq);
+          pwmDuty = 100;
+          /*switch (freq)
+          {
+              case 10:
+                  pwmDuty = 50;
+                  break;
+              case 9:
+                  pwmDuty = 60;
+                  break;
+              case 8:
+                  pwmDuty = 70;
+                  break;
+              case 5:
+                  pwmDuty = 40;
+              default:
+                  pwmDuty = 80;
+          }*/
+
       }
     }
   }
@@ -526,7 +549,7 @@ void SimpleSerialSocketServer_createTask(void)
 void SimpleSerialSocketServer_InitiatePWM(void){
 
     /* Period and duty in hertz */
-    uint16_t   pwmFreq = 1000;
+    uint16_t   pwmFreq = 1009; // set to a prime number to try to reduce weakened vib
 
     PWM_Params pwmParams;
 
@@ -546,6 +569,7 @@ void SimpleSerialSocketServer_InitiatePWM(void){
         while (1);
     }
 
+    pwmDuty = 0;
     PWM_start(pwm1);
 
 }
@@ -566,8 +590,9 @@ static void SimpleSerialSocketServer_init(void)
   LED_Params ledParams;
   LED_init();
   LED_Params_init(&ledParams);
-  ledHandle[CONFIG_LED_0] = LED_open(CONFIG_LED_0, &ledParams);
-  ledHandle[CONFIG_LED_1] = LED_open(CONFIG_LED_1, &ledParams);
+  ledHandle[CONFIG_LED_0] = LED_open(CONFIG_LED_0, &ledParams); // Red
+  ledHandle[CONFIG_LED_1] = LED_open(CONFIG_LED_1, &ledParams); // Green
+  ledHandle[CONFIG_LED_2] = LED_open(CONFIG_LED_2, &ledParams); // Blue
 
   // Initialize UART
   UART_Params uartParams;
@@ -654,6 +679,7 @@ static void SimpleSerialSocketServer_init(void)
 
   //Initialize GAP layer for Peripheral role and register to receive GAP events
   GAP_DeviceInit(GAP_PROFILE_PERIPHERAL, selfEntity, ADDRMODE_RP_WITH_PUBLIC_ID, NULL);
+
 }
 
 /*********************************************************************
@@ -1104,6 +1130,11 @@ static void SimpleSerialSocketServer_processGapMessage(gapEventHdr_t *pMsg)
         // Enable long range advertising for set #2
         status = GapAdv_enable(advHandleLongRange, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);
         SimpleSerialSocketServer_ASSERT(status == SUCCESS);
+
+        // Flashing blue LED indicates BLE advertising
+        LED_setOff(ledHandle[CONFIG_LED_0]);
+        LED_setOff(ledHandle[CONFIG_LED_1]);
+        LED_startBlinking(ledHandle[CONFIG_LED_2], 500, LED_BLINK_FOREVER);
       }
 
       break;
@@ -1122,8 +1153,11 @@ static void SimpleSerialSocketServer_processGapMessage(gapEventHdr_t *pMsg)
         connHandle = numActive - 1;
       }
 
-      // Red LED indicates connection
-      LED_setOn(ledHandle[CONFIG_LED_0], 100);
+      // Blue LED indicates connection
+      LED_setOff(ledHandle[CONFIG_LED_0]);
+      LED_setOff(ledHandle[CONFIG_LED_1]);
+      LED_stopBlinking(ledHandle[CONFIG_LED_2]);
+      LED_setOn(ledHandle[CONFIG_LED_2], 100);
 
 
       // Stop advertising since there is no room for more connections
@@ -1141,9 +1175,13 @@ static void SimpleSerialSocketServer_processGapMessage(gapEventHdr_t *pMsg)
       // "Disconnect" the stream as well
       SimpleStreamServer_disconnectStream();
 
-      // Indicate disconnection by turning of the LEDs
-      LED_setOff(ledHandle[CONFIG_LED_0]);
+      // Indicate disconnection by turning the Red LED on
+      LED_setOn(ledHandle[CONFIG_LED_0], 100);
       LED_setOff(ledHandle[CONFIG_LED_1]);
+      LED_setOff(ledHandle[CONFIG_LED_2]);
+
+      // Error vibrations here *************************************************************************
+      vibError();
       // Start advertising since there is room for more connections
       GapAdv_enable(advHandleLegacy, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);
       GapAdv_enable(advHandleLongRange, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);
@@ -1296,7 +1334,7 @@ static void timerISR()
     static uint8_t motorOn = 0; // flag
     if (motorOn) {
         // turn on the PWM
-        updateDutyCycle(50);
+        updateDutyCycle(pwmDuty);
     } else {
         // turn off the PWM
         updateDutyCycle(0);
@@ -1314,9 +1352,20 @@ void updateDutyCycle(uint32_t percent)
 void vibTime(uint8_t timeMs)
 {
     stopTimer();
-    updateDutyCycle(50);   // always on
+    updateDutyCycle(100);   // always on
     usleep(timeMs*1000);    // let it buzz for timeMS
     updateDutyCycle(0);     // off
+}
+
+
+/* out puts pwm to indicate to user loss of BLE connection */
+void vibError()
+{
+    vibTime(250);
+    usleep(500*1000);
+    vibTime(250);
+    usleep(500*1000);
+    vibTime(250);
 }
 
 /*********************************************************************

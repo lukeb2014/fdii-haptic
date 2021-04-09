@@ -82,6 +82,7 @@ digraph Model
     CONFIG_GPIO_BTN2 -> CONFIG_PIN_BTN2
     CONFIG_LED_0_GPIO -> CONFIG_PIN_0
     CONFIG_LED_1_GPIO -> CONFIG_PIN_1
+    CONFIG_LED_2_GPIO -> CONFIG_PIN_3
 
     // mod.$name=/ti/drivers/NVS
     CONFIG_NVSINTERNAL -> ti_drivers_Board
@@ -127,8 +128,10 @@ digraph Model
     // mod.$name=/ti/drivers/apps/LED
     CONFIG_LED_0 -> ti_drivers_Board
     CONFIG_LED_1 -> ti_drivers_Board
+    CONFIG_LED_2 -> ti_drivers_Board
     CONFIG_LED_0 -> CONFIG_LED_0_GPIO
     CONFIG_LED_1 -> CONFIG_LED_1_GPIO
+    CONFIG_LED_2 -> CONFIG_LED_2_GPIO
 
     // mod.$name=/ti/drivers/nvs/NVSCC26XX
 

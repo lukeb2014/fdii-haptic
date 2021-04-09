@@ -238,7 +238,7 @@ const uint_least8_t ECDH_count = CONFIG_ECDH_COUNT;
 #include <ti/drivers/GPIO.h>
 #include <ti/drivers/gpio/GPIOCC26XX.h>
 
-#define CONFIG_GPIO_COUNT 4
+#define CONFIG_GPIO_COUNT 5
 
 /*
  *  ======== gpioPinConfigs ========
@@ -249,10 +249,12 @@ GPIO_PinConfig gpioPinConfigs[] = {
     GPIOCC26XX_DIO_13 | GPIO_DO_NOT_CONFIG,
     /* CONFIG_GPIO_BTN2 : LaunchPad Button BTN-2 (Right) */
     GPIOCC26XX_DIO_14 | GPIO_DO_NOT_CONFIG,
-    /* CONFIG_LED_0_GPIO : LaunchPad LED Red */
-    GPIOCC26XX_DIO_06 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
-    /* CONFIG_LED_1_GPIO : LaunchPad LED Green */
+    /* CONFIG_LED_0_GPIO */
     GPIOCC26XX_DIO_07 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
+    /* CONFIG_LED_1_GPIO */
+    GPIOCC26XX_DIO_06 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_HIGH,
+    /* CONFIG_LED_2_GPIO */
+    GPIOCC26XX_DIO_05 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_HIGH,
 };
 
 /*
@@ -268,9 +270,11 @@ GPIO_CallbackFxn gpioCallbackFunctions[] = {
     NULL,
     /* CONFIG_GPIO_BTN2 : LaunchPad Button BTN-2 (Right) */
     NULL,
-    /* CONFIG_LED_0_GPIO : LaunchPad LED Red */
+    /* CONFIG_LED_0_GPIO */
     NULL,
-    /* CONFIG_LED_1_GPIO : LaunchPad LED Green */
+    /* CONFIG_LED_1_GPIO */
+    NULL,
+    /* CONFIG_LED_2_GPIO */
     NULL,
 };
 
@@ -278,6 +282,7 @@ const uint_least8_t CONFIG_GPIO_BTN1_CONST = CONFIG_GPIO_BTN1;
 const uint_least8_t CONFIG_GPIO_BTN2_CONST = CONFIG_GPIO_BTN2;
 const uint_least8_t CONFIG_LED_0_GPIO_CONST = CONFIG_LED_0_GPIO;
 const uint_least8_t CONFIG_LED_1_GPIO_CONST = CONFIG_LED_1_GPIO;
+const uint_least8_t CONFIG_LED_2_GPIO_CONST = CONFIG_LED_2_GPIO;
 
 /*
  *  ======== GPIOCC26XX_config ========
@@ -285,8 +290,8 @@ const uint_least8_t CONFIG_LED_1_GPIO_CONST = CONFIG_LED_1_GPIO;
 const GPIOCC26XX_Config GPIOCC26XX_config = {
     .pinConfigs = (GPIO_PinConfig *)gpioPinConfigs,
     .callbacks = (GPIO_CallbackFxn *)gpioCallbackFunctions,
-    .numberOfPinConfigs = 4,
-    .numberOfCallbacks = 4,
+    .numberOfPinConfigs = 5,
+    .numberOfCallbacks = 5,
     .intPriority = (~0)
 };
 
@@ -358,7 +363,7 @@ const uint_least8_t NVS_count = CONFIG_NVS_COUNT;
 #include <ti/drivers/PIN.h>
 #include <ti/drivers/pin/PINCC26XX.h>
 
-#define CONFIG_PIN_COUNT 7
+#define CONFIG_PIN_COUNT 8
 
 const PIN_Config BoardGpioInitTable[CONFIG_PIN_COUNT + 1] = {
     /* LaunchPad Button BTN-1 (Left), Parent Signal: CONFIG_GPIO_BTN1 GPIO Pin, (DIO13) */
@@ -367,14 +372,16 @@ const PIN_Config BoardGpioInitTable[CONFIG_PIN_COUNT + 1] = {
     CONFIG_PIN_BTN2 | PIN_INPUT_EN | PIN_PULLUP | PIN_IRQ_DIS,
     /* Parent Signal: CONFIG_GPTIMER_0 PWM Pin, (DIO23) */
     CONFIG_PIN_2 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
+    /* Parent Signal: CONFIG_LED_0_GPIO GPIO Pin, (DIO7) */
+    CONFIG_PIN_0 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
+    /* Parent Signal: CONFIG_LED_1_GPIO GPIO Pin, (DIO6) */
+    CONFIG_PIN_1 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_HIGH | PIN_PUSHPULL | PIN_DRVSTR_MED,
+    /* Parent Signal: CONFIG_LED_2_GPIO GPIO Pin, (DIO5) */
+    CONFIG_PIN_3 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_HIGH | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* XDS110 UART, Parent Signal: Board_UART0 TX, (DIO3) */
     CONFIG_PIN_UART_TX | PIN_GPIO_OUTPUT_EN | PIN_GPIO_HIGH | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* XDS110 UART, Parent Signal: Board_UART0 RX, (DIO2) */
     CONFIG_PIN_UART_RX | PIN_INPUT_EN | PIN_PULLDOWN | PIN_IRQ_DIS,
-    /* LaunchPad LED Red, Parent Signal: CONFIG_LED_0_GPIO GPIO Pin, (DIO6) */
-    CONFIG_PIN_0 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
-    /* LaunchPad LED Green, Parent Signal: CONFIG_LED_1_GPIO GPIO Pin, (DIO7) */
-    CONFIG_PIN_1 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
 
     PIN_TERMINATE
 };
@@ -601,41 +608,48 @@ const uint_least8_t UART_count = CONFIG_UART_COUNT;
  */
 #include <ti/drivers/apps/LED.h>
 
-#define CONFIG_LED_COUNT 2
+#define CONFIG_LED_COUNT 3
 LED_Object LEDObjects[CONFIG_LED_COUNT];
 
 static const LED_HWAttrs LEDHWAttrs[CONFIG_LED_COUNT] = {
     /* CONFIG_LED_0 */
-    /* LaunchPad LED Red */
     {
         .type = LED_GPIO_CONTROLLED,
         .index = CONFIG_LED_0_GPIO,
     },
     /* CONFIG_LED_1 */
-    /* LaunchPad LED Green */
     {
         .type = LED_GPIO_CONTROLLED,
         .index = CONFIG_LED_1_GPIO,
+    },
+    /* CONFIG_LED_2 */
+    {
+        .type = LED_GPIO_CONTROLLED,
+        .index = CONFIG_LED_2_GPIO,
     },
 };
 
 const LED_Config LED_config[CONFIG_LED_COUNT] = {
     /* CONFIG_LED_0 */
-    /* LaunchPad LED Red */
     {
         .object = &LEDObjects[CONFIG_LED_0],
         .hwAttrs = &LEDHWAttrs[CONFIG_LED_0]
     },
     /* CONFIG_LED_1 */
-    /* LaunchPad LED Green */
     {
         .object = &LEDObjects[CONFIG_LED_1],
         .hwAttrs = &LEDHWAttrs[CONFIG_LED_1]
+    },
+    /* CONFIG_LED_2 */
+    {
+        .object = &LEDObjects[CONFIG_LED_2],
+        .hwAttrs = &LEDHWAttrs[CONFIG_LED_2]
     },
 };
 
 const uint_least8_t CONFIG_LED_0_CONST = CONFIG_LED_0;
 const uint_least8_t CONFIG_LED_1_CONST = CONFIG_LED_1;
+const uint_least8_t CONFIG_LED_2_CONST = CONFIG_LED_2;
 const uint_least8_t LED_count = CONFIG_LED_COUNT;
 
 /*

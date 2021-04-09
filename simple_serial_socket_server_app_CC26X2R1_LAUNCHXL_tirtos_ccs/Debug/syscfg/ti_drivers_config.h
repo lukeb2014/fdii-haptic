@@ -93,13 +93,16 @@ extern const uint_least8_t              CONFIG_GPIO_BTN1_CONST;
 /* DIO14, LaunchPad Button BTN-2 (Right) */
 extern const uint_least8_t              CONFIG_GPIO_BTN2_CONST;
 #define CONFIG_GPIO_BTN2                1
-/* DIO6, LaunchPad LED Red */
+/* DIO7 */
 extern const uint_least8_t              CONFIG_LED_0_GPIO_CONST;
 #define CONFIG_LED_0_GPIO               2
-/* DIO7, LaunchPad LED Green */
+/* DIO6 */
 extern const uint_least8_t              CONFIG_LED_1_GPIO_CONST;
 #define CONFIG_LED_1_GPIO               3
-#define CONFIG_TI_DRIVERS_GPIO_COUNT    4
+/* DIO5 */
+extern const uint_least8_t              CONFIG_LED_2_GPIO_CONST;
+#define CONFIG_LED_2_GPIO               4
+#define CONFIG_TI_DRIVERS_GPIO_COUNT    5
 
 /* LEDs are active high */
 #define CONFIG_GPIO_LED_ON  (1)
@@ -131,15 +134,17 @@ extern const PIN_Config BoardGpioInitTable[];
 #define CONFIG_PIN_BTN2                   0x0000000e
 /* Parent Signal: CONFIG_GPTIMER_0 PWM Pin, (DIO23) */
 #define CONFIG_PIN_2                   0x00000017
+/* Parent Signal: CONFIG_LED_0_GPIO GPIO Pin, (DIO7) */
+#define CONFIG_PIN_0                   0x00000007
+/* Parent Signal: CONFIG_LED_1_GPIO GPIO Pin, (DIO6) */
+#define CONFIG_PIN_1                   0x00000006
+/* Parent Signal: CONFIG_LED_2_GPIO GPIO Pin, (DIO5) */
+#define CONFIG_PIN_3                   0x00000005
 /* XDS110 UART, Parent Signal: Board_UART0 TX, (DIO3) */
 #define CONFIG_PIN_UART_TX                   0x00000003
 /* XDS110 UART, Parent Signal: Board_UART0 RX, (DIO2) */
 #define CONFIG_PIN_UART_RX                   0x00000002
-/* LaunchPad LED Red, Parent Signal: CONFIG_LED_0_GPIO GPIO Pin, (DIO6) */
-#define CONFIG_PIN_0                   0x00000006
-/* LaunchPad LED Green, Parent Signal: CONFIG_LED_1_GPIO GPIO Pin, (DIO7) */
-#define CONFIG_PIN_1                   0x00000007
-#define CONFIG_TI_DRIVERS_PIN_COUNT    7
+#define CONFIG_TI_DRIVERS_PIN_COUNT    8
 
 
 /*
@@ -190,13 +195,16 @@ extern const uint_least8_t              Board_UART0_CONST;
  *  ======== LED ========
  */
 
-/* DIO6, LaunchPad LED Red */
+/* DIO7 */
 extern const uint_least8_t              CONFIG_LED_0_CONST;
 #define CONFIG_LED_0                    0
-/* DIO7, LaunchPad LED Green */
+/* DIO6 */
 extern const uint_least8_t              CONFIG_LED_1_CONST;
 #define CONFIG_LED_1                    1
-#define CONFIG_TI_DRIVERS_LED_COUNT     2
+/* DIO5 */
+extern const uint_least8_t              CONFIG_LED_2_CONST;
+#define CONFIG_LED_2                    2
+#define CONFIG_TI_DRIVERS_LED_COUNT     3
 
 
 /*
