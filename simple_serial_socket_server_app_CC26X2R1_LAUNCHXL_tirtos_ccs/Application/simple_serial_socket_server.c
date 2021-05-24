@@ -228,6 +228,8 @@ static uartMsg_t* uartCurrentMsg;
 static uint8_t    uartWriteActive = 0;
 
 static uint32_t pwmDuty;
+static uint8_t motorOn = 0; // flag
+static bool motorStat = false; // false means timer does nothing
 
 /*********************************************************************
  * LOCAL FUNCTIONS
@@ -476,14 +478,29 @@ static void SimpleStreamServer_incomingDataCB(uint16_t connHandle,
           msg = comm + 4;
           time_len = (uint8_t)atoi(msg);
           vibTime(time_len);
+          motorStat = false;
+          //updateTimerFreq(0);
+          //stopTimer();
       }
       else if (strncmp(comm, "VIBF", 4) == 0)
       {
+
           uint8_t freq;
           msg = comm + 4;
-          freq = (uint8_t)atoi(msg)*2;
+          freq = ((uint8_t)atoi(msg) + 1)*2;
           updateTimerFreq(freq);
           pwmDuty = 100;
+          if (freq == 22)
+          {
+              PWM_stop(pwm1);
+              stopTimer();
+              updateDutyCycle(100);
+              PWM_start(pwm1);
+              motorOn = 1;
+              motorStat = false;
+          }
+          else
+              motorStat = true;
           /*switch (freq)
           {
               case 10:
@@ -1324,6 +1341,7 @@ static void updateTimerFreq(uint8_t newFreq) {
     PWM_stop(pwm1);
     stopTimer();
     Timer_setPeriod(g_timer0, Timer_PERIOD_HZ, newFreq);
+    motorOn ^= 1;
     startTimer();
     PWM_start(pwm1);
 }
@@ -1331,15 +1349,17 @@ static void updateTimerFreq(uint8_t newFreq) {
 // handles what needs to happen for each tick
 static void timerISR()
 {
-    static uint8_t motorOn = 0; // flag
-    if (motorOn) {
-        // turn on the PWM
-        updateDutyCycle(pwmDuty);
-    } else {
-        // turn off the PWM
-        updateDutyCycle(0);
+    if (motorStat)
+    {
+        if (motorOn) {
+            // turn on the PWM
+            updateDutyCycle(pwmDuty);
+        } else {
+            // turn off the PWM
+            updateDutyCycle(0);
+        }
+        motorOn ^= 1;
     }
-    motorOn ^= 1;
 }
 
 /* changes the duty cycle of the PWM */
@@ -1351,10 +1371,13 @@ void updateDutyCycle(uint32_t percent)
 /* vibrates for a length of time in ms*/
 void vibTime(uint8_t timeMs)
 {
+    PWM_stop(pwm1);
     stopTimer();
+    PWM_start(pwm1);
     updateDutyCycle(100);   // always on
     usleep(timeMs*1000);    // let it buzz for timeMS
     updateDutyCycle(0);     // off
+    motorOn = 0;
 }
 
 
